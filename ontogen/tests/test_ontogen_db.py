@@ -23,9 +23,24 @@ STRUCTURED = {
     ],
     "education": [
         {"institution": "MIT", "degree": "BSc", "graduation_year": "2019"},
+        {"institution": "GIKI", "degree": "BS AI", "start_date": "09/2023", "end_date": "present"},
     ],
     "projects": [
-        {"name": "Widget", "description": "A widget that widgets", "technologies": ["Python", "FastAPI"]},
+        {"name": "Widget", "description": "A widget that widgets",
+         "technologies": ["Python", "FastAPI"], "metrics": ["78.58% accuracy", "F1 0.91"]},
+    ],
+    "languages": [
+        {"name": "English", "proficiency": "C2"},
+        {"name": "Arabic", "proficiency": "A1"},
+    ],
+    "certifications": [
+        {"name": "AWS Certified", "issuer": "Amazon", "year": "2022"},
+    ],
+    "activities": [
+        {"name": "IEEE Power & Energy", "organization": "IEEE"},
+    ],
+    "references": [
+        {"name": "Dr. Ali Sarosh", "title": "Professor", "contact": "ali@example.com"},
     ],
 }
 
@@ -66,6 +81,36 @@ def test_structured_to_relations_covers_all_fields():
     tech = by_prop["usesTechnology"]
     assert all(t["subject"] == "Widget" and t["subject_type"] == "project" for t in tech)
     assert {t["object"] for t in tech} == {"Python", "FastAPI"}
+
+    # Project metrics attach as literals on the PROJECT node.
+    metrics = by_prop["achievesMetric"]
+    assert all(m["subject"] == "Widget" and m["subject_type"] == "project" for m in metrics)
+    assert {m["object"] for m in metrics} == {"78.58% accuracy", "F1 0.91"}
+
+    # Education ongoing entry keeps start/end and no invented graduation year.
+    assert by_prop["educationStartDate"][0]["object"] == "09/2023"
+    assert by_prop["educationEndDate"][0]["object"] == "present"
+    assert {g["object"] for g in by_prop["graduationYear"]} == {"2019"}  # only the completed degree
+
+    # Languages: entity + proficiency on the edge.
+    langs = {l["object"]: l for l in by_prop["speaksLanguage"]}
+    assert set(langs) == {"English", "Arabic"}
+    assert langs["English"]["edge_props"] == {"proficiency": "C2"}
+    assert all(l["object_entity_type"] == "language" for l in langs.values())
+
+    # Certifications: entity off owner; issuer/year on the cert node.
+    assert by_prop["hasCertification"][0]["object"] == "AWS Certified"
+    assert by_prop["issuer"][0]["subject"] == "AWS Certified"
+    assert by_prop["certificationYear"][0]["object"] == "2022"
+
+    # Activities: entity off owner; organization on the activity node.
+    assert by_prop["participatedIn"][0]["object"] == "IEEE Power & Energy"
+    assert by_prop["activityOrganization"][0]["subject"] == "IEEE Power & Energy"
+
+    # References: entity off owner; title/contact on the reference node.
+    assert by_prop["hasReference"][0]["object"] == "Dr. Ali Sarosh"
+    assert by_prop["referenceTitle"][0]["subject"] == "Dr. Ali Sarosh"
+    assert by_prop["referenceContact"][0]["object"] == "ali@example.com"
 
 
 def test_render_resume_text_only_free_text():
@@ -205,6 +250,40 @@ def test_stage_graph_from_turtle(ontogen_session_factory):
         assert rels[0].rel_type == "EMPLOYER"
 
 
+def test_resolver_gates_fuzzy_by_type(ontogen_session_factory):
+    """Fix 4: skills/technologies/persons are kept verbatim (no Tier 2/3), so a
+    skill mention absent from the gazetteer is NOT snapped to a neighbour or
+    rewritten by the LLM. Only CANONICALIZE_TYPES reach the fuzzy tiers."""
+    from stages.canonicalize import ResumeEntityResolver, CANONICALIZE_TYPES
+    from db.models import Gazetteer
+    from config import EMBED_MODEL
+
+    assert "skill" not in CANONICALIZE_TYPES and "company" in CANONICALIZE_TYPES
+
+    with ontogen_session_factory() as session:
+        # A gazetteer canonical that a naive embedding match might snap onto.
+        session.add(Gazetteer(entity_type="skill", alias="aws lambda",
+                              canonical="AWS Lambda", source="static"))
+        session.commit()
+
+    resolver = ResumeEntityResolver(ontogen_session_factory, EMBED_MODEL)
+
+    # Skill with no exact alias → verbatim (never touches embeddings/LLM).
+    res = resolver.resolve("AWS (EC2, ECR, IAM)", "skill")
+    assert res.resolution_tier == "verbatim"
+    assert res.canonical_form == "AWS (EC2, ECR, IAM)"
+
+    # Exact gazetteer alias still resolves via Tier 1, even for a gated type.
+    res2 = resolver.resolve("AWS Lambda", "skill")
+    assert res2.resolution_tier == "gazetteer"
+    assert res2.canonical_form == "AWS Lambda"
+
+    # A reference name (person, no gazetteer) is preserved, not LLM-rewritten.
+    res3 = resolver.resolve("Dr. Ali Sarosh", "person")
+    assert res3.resolution_tier == "verbatim"
+    assert res3.canonical_form == "Dr. Ali Sarosh"
+
+
 def test_stage_structured_relations(ontogen_session_factory):
     from types import SimpleNamespace
 
@@ -233,6 +312,18 @@ def test_stage_structured_relations(ontogen_session_factory):
         # Resolved employer got the QID-based URI.
         assert "http://www.wikidata.org/entity/Q1" in ents
 
+        # Project node carries its metrics as literal properties.
+        widget = ents["http://www.wikidata.org/entity/Widget"]
+        assert set(widget.properties.get("achievesMetric")) == {"78.58% accuracy", "F1 0.91"}
+
         rels_rows = session.execute(select(GraphRelationship)).scalars().all()
         rel_types = {r.rel_type for r in rels_rows}
-        assert {"EMPLOYER", "EDUCATED_AT", "HAS_SKILL", "HAS_PROJECT", "USES_TECHNOLOGY"} <= rel_types
+        assert {
+            "EMPLOYER", "EDUCATED_AT", "HAS_SKILL", "HAS_PROJECT", "USES_TECHNOLOGY",
+            "SPEAKS_LANGUAGE", "HAS_CERTIFICATION", "PARTICIPATED_IN", "HAS_REFERENCE",
+        } <= rel_types
+
+        # Language proficiency rode through as an edge property.
+        lang_rels = [r for r in rels_rows if r.rel_type == "SPEAKS_LANGUAGE"]
+        profs = {(r.properties or {}).get("proficiency") for r in lang_rels}
+        assert profs == {"C2", "A1"}

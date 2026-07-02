@@ -1,0 +1,108 @@
+Fixing Résumé → Knowledge-Graph Extraction Gaps
+Context
+The Neo4j graph is missing whole categories of data and mis-representing others. The user listed concrete failures across the three seeded résumés (Zahid, Farrukh, Riyan). I traced each one to a specific layer with first-hand evidence (parser artifacts in ocr-resume-paser/artifacts/*, the live Postgres graph_entities, and re-running the PDF extractor). The failures are not one bug — they live in four different layers, and the user's mental model of where some of them originate is wrong (Farrukh's skills, in particular, are extracted correctly and then corrupted downstream). This plan fixes each at its real source.
+
+The pipeline: PDF → extract_native (pymupdf4llm) → clean → LLM normalize (normalize.py, against config/field_spec.json) → resumes.structured (Part 1), then render.py structured_to_relations → canonicalize.py entity resolution → kg_staging → graph_entities/graph_relationships → Neo4j (Part 2).
+
+Diagnosis — which issue lives where (all evidence-verified)
+Layer 1 — PDF text extraction drops an entire page (extract_native.py)
+Symptom: Zahid missing ~15 tools (Verilog, Scikit-learn, ETAP, SKM, AutoCAD Electrical, Power World, PSpice, KiCad, Altium, Proteus, Jupyter, Anaconda, Visual Studio, SolidWorks). Also his Languages, IEEE membership, Campus Energy Audit, and reference (Dr. Ali Sarosh) — all of these sit on page 2.
+
+Root cause (verified): pymupdf4llm.to_markdown(page_chunks=True) returns chunk[1] = 4 characters for Zahid's page 2, after mis-firing Tesseract OCR on it ("OCR on page.number=1/2"). But the page has a perfect embedded text layer — fitz page.get_text("text") returns 3262 chars for that page, containing every missing tool. So the text is right there; pymupdf4llm's per-page image/OCR heuristic wrongly classified the dense two-column skills/tools page as a scan and threw the real text away. 03_extraction_metadata.json confirms raw_char_count: 4796 (≈ page 1 only). This is not an LLM or field-spec problem, and needs no OCR.
+
+Layer 2 — LLM/field-spec can't express "ongoing education" (normalize.py, field_spec.json)
+Symptom: Riyan graduationYear: "2023" is wrong — his BS is ongoing ("09/2023 – present"), no graduation year stated.
+
+Root cause (verified): config/field_spec.json education has only graduation_year (no start/end/status). Source text is "09/2023 present"; the model had nowhere to put "present" and back-filled the only year it saw (the start) into graduation_year. Farrukh's "2027 (Expected)" worked because it was explicit — the logic breaks only when it must infer "still enrolled."
+
+Layer 3 — Categories with no field at all (field_spec.json + render.py + type map)
+Symptom: Languages, Certifications/memberships/extracurriculars, References, and project quantitative metrics (78.58% accuracy, F1, 110,414 samples, 5,000+ annotations, 95.53%) are all absent — "no relation type exists, so they're gone regardless of extraction quality."
+
+Root cause (verified): field_spec.json has no languages, certifications, references, or projects[].metrics fields, so the parser never captures them; render.py structured_to_relations() has nothing to emit; and there are no speaksLanguage/hasCertification/hasReference entries in PROPERTY_ENTITY_TYPE_MAP. Project nodes carry only name + uri (render.py:143-158).
+
+Layer 4 — Entity resolver corrupts & drops skills (canonicalize.py Tier 2)
+Symptom the user misattributed: "Farrukh: AWS Lambda captured instead of AWS EC2/ECR/IAM… Data Lake / Data Warehouse / SRE appear but aren't in his résumé… Three.js, Unity, Blender, Bootstrap, SQLAlchemy, Kernel Development dropped."
+
+What actually happened (verified): Farrukh's parser output is correct — 04_structured.json contains "AWS (EC2, ECR, IAM)" (one skill), Three.js, Unity, Blender, Bootstrap, SQLAlchemy, Kernel Development, and no Data Lake / Warehouse / SRE / Lambda. The corruption is introduced downstream by Ontogen's entity resolver. In graph_entities his skills read AWS Lambda, Data Lake, Data Warehouse, Site Reliability Engineering, DevOps, Groovy, PHP, Graph Database — every one of these is a value in the skill gazetteer. Zahid similarly gained Puppet, Java, OpenAI API (from "OpenAI Gym") and lost Reinforcement Learning/PPO/SVM/Verilog.
+
+Root cause (verified): ResumeEntityResolver._tier2 (canonicalize.py:449-484) embeds each skill mention and snaps it to the nearest of 288 gazetteer skill canonicals if cosine ≥ 0.88. bge-small-en puts many distinct tech skills above 0.88 ("OpenAI Gym"↔"OpenAI API", "AWS (EC2, ECR, IAM)"↔"AWS Lambda", "ETL"/"Data Pipelines"↔"Data Lake"/"Data Warehouse", "MLOps"↔"DevOps"/"SRE"). Distinct mentions collapsing onto the same canonical then dedup-MERGE in Neo4j, which is why real skills also disappear (Farrukh 72 parser skills → 42 graph nodes; Zahid 18 → 15). Tier 3's LLM normalization (max_tokens=40 on a reasoning model) is a second, smaller hallucination path. Fuzzy canonicalization is simply the wrong operation for skills.
+
+Fixes
+Fix 1 — extract_native.py: never silently lose a page's text layer
+In extract_native(), open the PDF with fitz alongside pymupdf4llm. For each page chunk, compare the markdown length to the page's plain text-layer length and substitute page.get_text("text") when pymupdf4llm has dropped the page.
+
+Concrete rule (thresholds tuned against all 3 résumés' 6 pages):
+
+plain = page.get_text("text").strip()
+md    = chunk["text"].strip()
+if len(plain) > 200 and len(md) < 0.5 * len(plain):
+    use plain    # pymupdf4llm dropped/mis-OCR'd this page
+Verified data: healthy pages score md/plain between 0.98 and 1.05; the only failure — Zahid page 2 — scores 0.00 (md=0, plain=3260). The 0.5 ratio sits in a wide no-man's-land between the two, and the 200-char floor prevents a legitimately short page (e.g. a one-line title page) from ever tripping it. So the fix recovers Zahid's page 2 (tools + languages + membership + reference) without touching Farrukh's or Riyan's pages. Lossless, no OCR, no torch. Keep the existing triage.needs_ocr → marker path unchanged for genuinely scanned PDFs. The fallback should be unit-tested against all three résumés (assert only Zahid p2 is overridden).
+
+Fix 2 — education "ongoing" handling (field_spec.json + normalize.py)
+field_spec: add start_date and end_date to the education object (mirroring work_history), so "09/2023 – present" is representable; keep graduation_year for the completion year only.
+prompts (normalize.py:47-113): add one rule to SYSTEM_PROMPT and the VERIFY_SYSTEM_PROMPT checklist — "graduation_year is the completion/graduation year ONLY. If a program is ongoing ('present', 'current', no end date) or the year is only expected, leave graduation_year null (capture the range in start_date/end_date instead) — never copy the start year into graduation_year."
+render.py: emit startDate/endDate literals for education; emit graduationYear only when present (already conditional at render.py:129-131).
+Fix 3 — add the missing categories (three coordinated edits per category)
+For languages, certifications, memberships/extracurriculars, references, project metrics, add the field, render it, and type it:
+
+config/field_spec.json — new fields with clear descriptions (the guide is injected into the prompt, so descriptions drive extraction):
+languages: array{ name, proficiency }
+certifications: array{ name, issuer, year }
+activities (memberships/extracurriculars): array{ name, organization, description }
+references: array{ name, title, contact }
+projects[].metrics: array — "quantitative results (accuracy, F1, sample counts, %)".
+ontogen/render.py structured_to_relations() — emit:
+speaksLanguage (entity, object_entity_type="language") per language, carrying proficiency as an edge property (see Fix 3b).
+hasCertification (entity, "certification" — already in the type map and gazetteer) + issuedYear/issuer literals.
+memberOf/participatedIn (entity, "organization") for activities.
+hasReference (entity, "person"), with title/contact literals.
+projects[].metrics → literal properties on the project node (subject_type="project", object_type="literal", e.g. _rel("achievesMetric", …, subject=project.name, obj="78.58% accuracy", "literal", subject_type="project")). Makes "which project hit >90%?" answerable (as strings — numeric-range querying would need parsing; noted as a limitation, not done now).
+ontogen/config.py PROPERTY_ENTITY_TYPE_MAP — add speaksLanguage→language, hasReference→person, memberOf→organization (certification/skill/etc. already mapped). Leave language/organization/ reference verbatim (no gazetteer canonicalization — see Fix 4).
+Fix 3b — let Path A edges carry properties (small, enables language proficiency and any future edge attribute): kg_staging.stage_structured_relations() currently builds edges as (subj_uri, rel_type, obj_uri) with no props (kg_staging.py:189); _persist drops them. Extend the edge tuple to an optional 4th props dict and pass it to stage_relationship(...) (which already accepts properties). Then speaksLanguage edges carry {"proficiency": "C2"}.
+
+Fix 4 — stop the resolver from corrupting skills (canonicalize.py)
+Highest-impact fix for graph quality. Fuzzy canonicalization is only safe for a few entity types; for everything else it must be off by default.
+
+Use an allowlist, not a denylist (this also settles the reviewer's Gap 2 — what happens to the new person/organization types). Today resolve() (canonicalize.py:539-551) runs Tier 1 → Tier 2 → Tier 3, and Tier 3's LLM always returns something even when no gazetteer exists for the type (canonicalize.py:550). So a type with no gazetteer does not safely no-op — it gets LLM-rewritten. A reference's name ("Dr. Ali Sarosh") or a membership org would be mangled exactly like the skills are. Fix:
+
+CANONICALIZE_TYPES = {"company", "university", "certification", "job_title"}
+def resolve(mention, entity_type, context=""):
+    t = self._tier1(mention, entity_type)        # exact gazetteer alias, any type
+    if t: return t
+    if entity_type.lower() in CANONICALIZE_TYPES: # only these use fuzzy Tier 2/3
+        t = self._tier2(...);  if t: return t
+        return self._tier3(...)
+    return verbatim(mention, entity_type)         # skill/technology/language/
+                                                  # person/organization/reference/unknown
+verbatim(...) returns EntityResolutionResult(canonical_form=mention, resolution_tier="verbatim", confidence=1.0, wikidata_qid=None). This keeps "OpenAI Gym", "AWS (EC2, ECR, IAM)", "JSBSim", "Three.js", reference names, and org names intact, eliminates the collapse-driven drops, and is safe-by-default for any entity type Fix 3 (or a future change) introduces.
+
+For the allowlisted types, also raise the Tier 2 threshold 0.88 → ~0.94 (canonicalize.py:474) as a general safeguard against over-eager company/university merges.
+Fix 5 — regenerate the graph (must also clear pipeline_runs)
+The existing rows were produced by the old logic. Two caching hazards make a naive re-run silently keep the old results:
+
+Stage cache — pipeline_runs caches each stage's output keyed by (document_id, stage) (it replaced the old outputs/*.json file checks). In --resume mode _cached_or_run reuses cached CQ/answer/relation/ontology outputs, and _resume_ids skips any résumé with a succeeded kg_facts row entirely (pipeline.py:45-57,177-189). So the new field-driven relations (Fix 3) and even a full re-run can be bypassed. Even in default mode, leaving stale kg_facts rows means a later --resume / run_pipeline.py invocation skips these résumés.
+Append-only staging — kg_staging only ever INSERTs; dedup happens at the Neo4j MERGE. Re-running without clearing graph_entities/graph_relationships duplicates every node/edge.
+Recipe (for the 3 affected résumé ids, or all):
+
+Re-parse the PDFs into resumes.structured (python -m resume_parser.cli … --db-uri $DATABASE_URL) — Fix 1/2/3 land here.
+DELETE FROM pipeline_runs WHERE document_id IN (…); (all stages, not just kg_facts — forces a clean recompute and prevents resume-mode skips)
+DELETE FROM graph_relationships WHERE source_doc IN (…);
+DELETE FROM graph_entities WHERE source_doc IN (…);
+(optional) DELETE FROM canon_store WHERE source_doc IN (…); to drop EDC property entries the old run registered, so they can't cause stale cross-doc merges. Gazetteers/wikidata_properties are corpus-wide seed data — leave them.
+Re-run python ontogen/pipeline.py (default mode, no -r), then python ontogen/graphdb/load_to_neo4j.py --wipe.
+Files to change
+ocr-resume-paser/resume_parser/extract_native.py — page-level text-layer fallback (Fix 1)
+ocr-resume-paser/config/field_spec.json — education start/end; new languages/certifications/activities/references/projects.metrics (Fix 2, 3)
+ocr-resume-paser/resume_parser/normalize.py — graduation-year/ongoing prompt rules (Fix 2)
+ontogen/render.py — emit new relations + education dates + project metrics (Fix 2, 3)
+ontogen/config.py — PROPERTY_ENTITY_TYPE_MAP additions (Fix 3)
+ontogen/db/kg_staging.py — edge properties for Path A (Fix 3b)
+ontogen/stages/canonicalize.py — per-type resolution gating + threshold (Fix 4)
+Verification
+Extraction (Fix 1): re-run parser on Abdullah-zahid.pdf; assert 04_structured.json skills now include Verilog/Scikit-learn/ETAP/AutoCAD/ Altium/Proteus/SolidWorks/etc., and that page-2 languages/membership/reference appear. Confirm raw_char_count ≈ 8k not 4.8k.
+Riyan (Fix 2): re-parse Riyan Resume.pdf; assert education graduation_year is null (or absent) and start_date/end_date reflect "09/2023 – present".
+New categories (Fix 3): after re-parse, structured carries languages/ certifications/activities/references and projects[].metrics; after Ontogen, graph_relationships has SPEAKS_LANGUAGE/HAS_CERTIFICATION/HAS_REFERENCE rows and project nodes carry achievesMetric properties. Extend tests/test_ontogen_db.py's structured_to_relations() test for the new dicts.
+Resolver (Fix 4): query graph_entities skills for Farrukh — assert AWS Lambda/Data Lake/Data Warehouse/SRE are gone and AWS (EC2, ECR, IAM)/Three.js/Unity/Blender/SQLAlchemy are present; Zahid has no Puppet/Java, and OpenAI Gym (not OpenAI API). Skill node count rises toward the parser's counts (Farrukh ≈72, Zahid ≈18+page-2 tools).
+End-to-end (Fix 5): load_to_neo4j.py --wipe; in Neo4j confirm the new relationship types and that no résumé shows skills its PDF doesn't contain.
+Add Comment

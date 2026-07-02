@@ -46,7 +46,8 @@ def render_resume_text(structured: dict) -> str:
 
 
 def _rel(property: str, description: str, subject: str, obj: str, object_type: str,
-         subject_type: str = "person", object_entity_type: str | None = None) -> dict:
+         subject_type: str = "person", object_entity_type: str | None = None,
+         edge_props: dict | None = None) -> dict:
     return {
         "property": property,
         "description": description,
@@ -55,6 +56,10 @@ def _rel(property: str, description: str, subject: str, obj: str, object_type: s
         "object": obj,
         "object_type": object_type,
         "object_entity_type": object_entity_type,
+        # Optional properties to hang on the edge itself (entity objects only),
+        # e.g. {"proficiency": "C2"} on a speaksLanguage edge. kg_staging passes
+        # these through to graph_relationships.properties.
+        "edge_props": edge_props or None,
         "source": "structured",
     }
 
@@ -126,6 +131,12 @@ def structured_to_relations(structured: dict) -> list[dict]:
         degree = (edu.get("degree") or "").strip()
         if degree:
             rels.append(_rel("degree", "A degree the person earned.", owner, degree, "literal"))
+        edu_start = (edu.get("start_date") or "").strip()
+        if edu_start:
+            rels.append(_rel("educationStartDate", "The start date of a program of study.", owner, edu_start, "literal"))
+        edu_end = (edu.get("end_date") or "").strip()
+        if edu_end:
+            rels.append(_rel("educationEndDate", "The end date of a program of study ('present' if ongoing).", owner, edu_end, "literal"))
         grad = (edu.get("graduation_year") or "").strip()
         if grad:
             rels.append(_rel("graduationYear", "The graduation year of a degree.", owner, grad, "literal"))
@@ -156,5 +167,80 @@ def structured_to_relations(structured: dict) -> list[dict]:
                     name, tech, "entity",
                     subject_type="project", object_entity_type="technology",
                 ))
+        # Quantitative results attach as literal properties on the PROJECT node,
+        # so "which project hit >90% accuracy" is answerable off that node.
+        for metric in proj.get("metrics") or []:
+            metric = (metric or "").strip()
+            if metric:
+                rels.append(_rel(
+                    "achievesMetric", "A quantitative result reported for a project.",
+                    name, metric, "literal", subject_type="project",
+                ))
+
+    # ── Languages (spoken/written) — proficiency rides on the edge ───────────
+    for lang in structured.get("languages") or []:
+        lname = (lang.get("name") or "").strip()
+        if not lname:
+            continue
+        prof = (lang.get("proficiency") or "").strip()
+        rels.append(_rel(
+            "speaksLanguage", "A human language the person knows.",
+            owner, lname, "entity", object_entity_type="language",
+            edge_props={"proficiency": prof} if prof else None,
+        ))
+
+    # ── Certifications (issuer/year hang on the certification node) ──────────
+    for cert in structured.get("certifications") or []:
+        cname = (cert.get("name") or "").strip()
+        if not cname:
+            continue
+        rels.append(_rel(
+            "hasCertification", "A certification or credential the person earned.",
+            owner, cname, "entity", object_entity_type="certification",
+        ))
+        issuer = (cert.get("issuer") or "").strip()
+        if issuer:
+            rels.append(_rel("issuer", "The organization that issued a certification.",
+                             cname, issuer, "literal", subject_type="certification"))
+        cyear = (cert.get("year") or "").strip()
+        if cyear:
+            rels.append(_rel("certificationYear", "The year a certification was obtained.",
+                             cname, cyear, "literal", subject_type="certification"))
+
+    # ── Activities / memberships (organization/description on the node) ──────
+    for act in structured.get("activities") or []:
+        aname = (act.get("name") or "").strip()
+        if not aname:
+            continue
+        rels.append(_rel(
+            "participatedIn", "An activity, membership, or extracurricular of the person.",
+            owner, aname, "entity", object_entity_type="activity",
+        ))
+        org = (act.get("organization") or "").strip()
+        if org:
+            rels.append(_rel("activityOrganization", "The organization associated with an activity.",
+                             aname, org, "literal", subject_type="activity"))
+        adesc = (act.get("description") or "").strip()
+        if adesc:
+            rels.append(_rel("activityDescription", "What an activity involved.",
+                             aname, adesc, "literal", subject_type="activity"))
+
+    # ── References (title/contact hang on the reference person node) ─────────
+    for ref in structured.get("references") or []:
+        rname = (ref.get("name") or "").strip()
+        if not rname:
+            continue
+        rels.append(_rel(
+            "hasReference", "A person listed as a reference for the candidate.",
+            owner, rname, "entity", object_entity_type="person",
+        ))
+        rtitle = (ref.get("title") or "").strip()
+        if rtitle:
+            rels.append(_rel("referenceTitle", "The title/affiliation of a reference.",
+                             rname, rtitle, "literal", subject_type="person"))
+        rcontact = (ref.get("contact") or "").strip()
+        if rcontact:
+            rels.append(_rel("referenceContact", "Contact detail of a reference.",
+                             rname, rcontact, "literal", subject_type="person"))
 
     return rels

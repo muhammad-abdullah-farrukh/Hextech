@@ -120,4 +120,13 @@ PROPERTY_ENTITY_TYPE_MAP: dict[str, str] = {
     "Position":        "job_title",
     "Role":            "job_title",
     "Title":           "job_title",
+    # Languages / references / activities (structured Path A; kept here so a
+    # future Path B predicate of the same name types consistently).
+    "SpeaksLanguage":  "language",
+    "speaksLanguage":  "language",
+    "HasReference":    "person",
+    "hasReference":    "person",
+    "ParticipatedIn":  "activity",
+    "participatedIn":  "activity",
+    "MemberOf":        "organization",
 }

@@ -402,11 +402,27 @@ Format exactly: <canonical form> | <score>
 Answer:"""
 
 
+# Entity types where fuzzy canonicalization (embedding + LLM) is safe and
+# valuable — collapsing "Google Inc." → "Google", "MIT" → "Massachusetts
+# Institute of Technology". For every OTHER type (skill, technology, language,
+# person, organization, activity, reference, unknown, …) fuzzy matching does
+# more harm than good: bge-small-en snaps distinct skills onto the nearest
+# "famous" gazetteer neighbour ("OpenAI Gym"→"OpenAI API", "AWS (EC2, ECR,
+# IAM)"→"AWS Lambda"), and the Tier 3 LLM rewrites/hallucinates mentions with no
+# gazetteer to anchor them (e.g. a reference's name). Those types get Tier 1
+# (exact alias) only, else verbatim. This is an allowlist, not a denylist, so any
+# new entity type is safe-by-default.
+CANONICALIZE_TYPES = {"company", "university", "certification", "job_title"}
+
+
 class ResumeEntityResolver(EntityResolutionBackend):
     """
     Tier 1 — Gazetteer lookup (O(1), curated JSON files)
     Tier 2 — Embedding similarity against canonical entity store (variants)
     Tier 3 — LLM normalization (novel/ambiguous entities)
+
+    Tiers 2 and 3 run only for CANONICALIZE_TYPES; all other types resolve via
+    Tier 1 (exact alias) or fall through verbatim, preserving the surface form.
     """
 
     def __init__(self, session_factory, embed_model_name: str) -> None:
@@ -471,7 +487,7 @@ class ResumeEntityResolver(EntityResolutionBackend):
         best_i = int(np.argmax(scores))
         best_score = float(scores[best_i])
 
-        if best_score >= 0.88:
+        if best_score >= 0.94:
             canonical = canonical_values[best_i]
             return EntityResolutionResult(
                 original_mention=mention,
@@ -536,19 +552,35 @@ class ResumeEntityResolver(EntityResolutionBackend):
 
     # ── Public API ──────────────────────────────────────────────────────────
 
+    def _verbatim(self, mention: str, entity_type: str) -> EntityResolutionResult:
+        """Keep the mention exactly as written — no fuzzy match, no LLM rewrite."""
+        return EntityResolutionResult(
+            original_mention=mention,
+            canonical_form=mention,
+            entity_type=entity_type,
+            resolution_tier="verbatim",
+            confidence=1.0,
+            wikidata_qid=None,
+        )
+
     def resolve(
         self, mention: str, entity_type: str, context: str = ""
     ) -> EntityResolutionResult:
+        # Tier 1 (exact gazetteer alias) applies to every type.
         result = self._tier1(mention, entity_type)
         if result:
             return result
+
+        # Fuzzy Tiers 2/3 only for types where canonicalization is safe; every
+        # other type keeps its surface form (see CANONICALIZE_TYPES).
+        if entity_type.lower() not in CANONICALIZE_TYPES:
+            return self._verbatim(mention, entity_type)
 
         result = self._tier2(mention, entity_type, context)
         if result:
             return result
 
-        result = self._tier3(mention, entity_type, context)
-        return result
+        return self._tier3(mention, entity_type, context)
 
 
 # ══════════════════════════════════════════════════════════════════════════════

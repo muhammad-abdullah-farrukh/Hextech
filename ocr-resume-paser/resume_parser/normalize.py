@@ -85,7 +85,11 @@ SYSTEM_PROMPT = (
     "text, even if it appears far from the relevant heading.\n"
     "8. Do NOT invent values that are not in the source text. Leave an optional "
     "field null only when the information is genuinely absent.\n"
-    "9. Preserve original wording for names, titles, companies, and dates."
+    "9. Preserve original wording for names, titles, companies, and dates.\n"
+    "10. graduation_year is the COMPLETION/graduation year ONLY. If a program is "
+    "ongoing ('present', 'current', or no end date given) or the year is only "
+    "expected, leave graduation_year null and record the range in "
+    "start_date/end_date — NEVER copy the start year into graduation_year."
 )
 
 VERIFY_SYSTEM_PROMPT = (
@@ -103,6 +107,9 @@ VERIFY_SYSTEM_PROMPT = (
     "derived from the work-history date ranges.\n"
     "- every work_history and education entry from the source is captured (none "
     "dropped).\n"
+    "- graduation_year is the completion year only; for an ongoing/'present' or "
+    "merely-expected program it is null (the range lives in start_date/end_date), "
+    "never the start year.\n"
     "- each skill is a single atomic term (no run-on/concatenated strings); "
     "deduplicated.\n"
     "\n"

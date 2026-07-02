@@ -92,11 +92,14 @@ def _persist(session: Session, source_doc, nodes: dict[str, dict], edges: list[t
         props.setdefault("uri", uri)
         uri_to_id[uri] = stage_entity(session, source_doc, etype, props)
 
-    for subj_uri, rel_type, obj_uri in edges:
+    for edge in edges:
+        # Edges are (subj_uri, rel_type, obj_uri) with an optional 4th props dict.
+        subj_uri, rel_type, obj_uri = edge[0], edge[1], edge[2]
+        props = edge[3] if len(edge) > 3 else None
         # Endpoints must exist as nodes; skip dangling edges rather than crash.
         if subj_uri in uri_to_id and obj_uri in uri_to_id:
             stage_relationship(
-                session, source_doc, uri_to_id[subj_uri], uri_to_id[obj_uri], rel_type
+                session, source_doc, uri_to_id[subj_uri], uri_to_id[obj_uri], rel_type, props
             )
     session.commit()
 
@@ -186,6 +189,7 @@ def stage_structured_relations(session: Session, source_doc, relations: list[dic
                 canonical = obj
         obj_uri = WD_NS + (qid if qid else _slugify(canonical))
         ensure(obj_uri, canonical, obj_etype)
-        edges.append((subj_uri, _rel_type(prop), obj_uri))
+        edge_props = rel.get("edge_props") or None
+        edges.append((subj_uri, _rel_type(prop), obj_uri, edge_props))
 
     _persist(session, source_doc, nodes, edges)

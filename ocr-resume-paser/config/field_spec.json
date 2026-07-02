@@ -56,7 +56,8 @@
     "properties": [
       { "name": "name", "type": "string", "required": true, "description": "Project name or short title" },
       { "name": "description", "type": "string", "required": false, "description": "What the project does / the candidate's contribution" },
-      { "name": "technologies", "type": "array", "items": "string", "required": false, "description": "Tools, languages, or frameworks used" }
+      { "name": "technologies", "type": "array", "items": "string", "required": false, "description": "Tools, languages, or frameworks used" },
+      { "name": "metrics", "type": "array", "items": "string", "required": false, "description": "Quantitative results reported for the project, each as a short string (e.g. '78.58% accuracy', 'F1 0.91', '110,414 samples', '5,000+ annotations')" }
     ]
   },
   {
@@ -68,7 +69,56 @@
     "properties": [
       { "name": "institution", "type": "string", "required": true },
       { "name": "degree", "type": "string", "required": false },
-      { "name": "graduation_year", "type": "string", "required": false }
+      { "name": "start_date", "type": "string", "required": false, "description": "When the program started (as written, e.g. '09/2023', 'Sept 2021')" },
+      { "name": "end_date", "type": "string", "required": false, "description": "When the program ended, as written (e.g. '2025', 'present', 'expected 2027'); use 'present' for ongoing programs" },
+      { "name": "graduation_year", "type": "string", "required": false, "description": "Completion/graduation year ONLY. Leave null if the program is ongoing ('present'/'current') or the year is not stated — never copy the start year here" }
+    ]
+  },
+  {
+    "name": "languages",
+    "type": "array",
+    "items": "object",
+    "required": false,
+    "description": "Spoken/written human languages the candidate knows (not programming languages)",
+    "properties": [
+      { "name": "name", "type": "string", "required": true, "description": "Language name, e.g. 'English', 'Urdu'" },
+      { "name": "proficiency", "type": "string", "required": false, "description": "Stated proficiency level, e.g. 'C2', 'Native', 'Fluent', 'A1'" }
+    ]
+  },
+  {
+    "name": "certifications",
+    "type": "array",
+    "items": "object",
+    "required": false,
+    "description": "Professional certifications, licenses, or credentials the candidate has earned",
+    "properties": [
+      { "name": "name", "type": "string", "required": true, "description": "Certification/credential name" },
+      { "name": "issuer", "type": "string", "required": false, "description": "Issuing organization, if stated" },
+      { "name": "year", "type": "string", "required": false, "description": "Year obtained, if stated" }
+    ]
+  },
+  {
+    "name": "activities",
+    "type": "array",
+    "items": "object",
+    "required": false,
+    "description": "Memberships, extracurriculars, volunteering, or notable non-work activities (e.g. society memberships, campus initiatives)",
+    "properties": [
+      { "name": "name", "type": "string", "required": true, "description": "Activity, role, or membership name" },
+      { "name": "organization", "type": "string", "required": false, "description": "Associated organization or society, if any" },
+      { "name": "description", "type": "string", "required": false, "description": "What the activity involved, if described" }
+    ]
+  },
+  {
+    "name": "references",
+    "type": "array",
+    "items": "object",
+    "required": false,
+    "description": "People listed as references for the candidate",
+    "properties": [
+      { "name": "name", "type": "string", "required": true, "description": "Reference's full name" },
+      { "name": "title", "type": "string", "required": false, "description": "Their title/role and affiliation, if stated" },
+      { "name": "contact", "type": "string", "required": false, "description": "Their email or phone, if stated" }
     ]
   }
 ]
