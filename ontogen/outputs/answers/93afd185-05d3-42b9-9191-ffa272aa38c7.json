@@ -1,0 +1,102 @@
+[
+  {
+    "question": "What is the primary technology used in TeseraVR?",
+    "answer": "The primary technology used in TeseraVR is AI (Artificial Intelligence).",
+    "subject": "Project - TeseraVR"
+  },
+  {
+    "question": "What type of workspace does TeseraVR create?",
+    "answer": "TeseraVR creates a 3D workspace that enables users to visualize and interact with 3D models generated from 2D e-commerce images. These models are integrated into the user's real environment using Meta Quest spatial scanning, resulting in a mixed reality experience where virtual elements coexist with the physical surroundings.",
+    "subject": "Project - TeseraVR"
+  },
+  {
+    "question": "Which pipeline is used in TeseraVR?",
+    "answer": "The pipeline used in TeseraVR is the M.A.R.S (Metric Augmented Retrieval System) pipeline.",
+    "subject": "Project - TeseraVR"
+  },
+  {
+    "question": "What does TeseraVR convert 2D e-commerce images into?",
+    "answer": "TeseraVR converts 2D e-commerce images into metric-accurate 3D assets. These 3D models are designed to be placed in the user's physical environment using Meta Quest spatial scanning, providing an immersive and realistic visualization experience.",
+    "subject": "Project - TeseraVR"
+  },
+  {
+    "question": "How does TeseraVR map 3D assets to a user's environment?",
+    "answer": "TeseraVR maps 3D assets to a user's environment through a process that involves several key steps:\n\n1. **AI Conversion**: The system uses AI to convert 2D e-commerce images into metric-accurate 3D assets.\n\n2. **Spatial Scanning**: Meta Quest's spatial scanning technology is employed to map the user's physical environment, creating a digital representation of the space.\n\n3. **Integration via M.A.R.S Pipeline**: The M.A.R.S (Metric Augmented Retrieval System) pipeline processes the spatial data from the scanner, ensuring that the 3D assets are accurately positioned and scaled within the user's environment.\n\nThis integration allows the 3D assets to appear as if they are part of the user's real surroundings, enhancing the mixed reality experience.",
+    "subject": "Project - TeseraVR"
+  },
+  {
+    "question": "What is the purpose of the WiChat DevOps project?",
+    "answer": "The purpose of the WiChat DevOps project is to automate the Continuous Integration and Continuous Deployment (CI/CD) process for a containerized multi-service web application. This is achieved by integrating Docker for containerization, AWS Elastic Container Registry (ECR) for storing Docker images, and GitHub Actions for workflow automation. The project streamlines the development and deployment workflow, ensuring efficient and reliable delivery of the application by automating building, testing, and deployment processes.",
+    "subject": "Project - WiChat DevOps"
+  },
+  {
+    "question": "Which containerization tool is used in WiChat DevOps?",
+    "answer": "The containerization tool used in WiChat DevOps is Docker.",
+    "subject": "Project - WiChat DevOps"
+  },
+  {
+    "question": "What AWS service is integrated with GitHub Actions in WiChat DevOps?",
+    "answer": "The AWS service integrated with GitHub Actions in WiChat DevOps is AWS Elastic Container Registry (ECR).",
+    "subject": "Project - WiChat DevOps"
+  },
+  {
+    "question": "What type of application does WiChat DevOps support?",
+    "answer": "WiChat DevOps supports a containerized multi-service web application. It utilizes Docker for containerization, AWS ECR for managing container images, and GitHub Actions for automating the CI/CD pipeline, enabling efficient development and deployment processes.",
+    "subject": "Project - WiChat DevOps"
+  },
+  {
+    "question": "Which AWS service is used for compute in WiChat DevOps?",
+    "answer": "The AWS service used for compute in WiChat DevOps is Amazon EC2 (Elastic Compute Cloud).",
+    "subject": "Project - WiChat DevOps"
+  },
+  {
+    "question": "What is the main feature of The Chase project?",
+    "answer": "The main feature of The Chase project is an immersive, interactive storytelling experience that uses WebGL to create a dynamic, scroll-driven narrative. This experience includes 13 visualizations, such as 3 cinematic scenes and 10 interactive data charts, which respond to the user's scroll actions, enhancing the storytelling of an NBA championship run.",
+    "subject": "Project - The Chase"
+  },
+  {
+    "question": "How many visualizations are included in The Chase?",
+    "answer": "The Chase includes a total of 13 visualizations, comprising 3 cinematic scenes and 10 interactive data charts.\n\n**Answer:** The Chase includes 13 visualizations.",
+    "subject": "Project - The Chase"
+  },
+  {
+    "question": "What library is used for the 3D canvas in The Chase?",
+    "answer": "The library used for the 3D canvas in The Chase is Three.js.",
+    "subject": "Project - The Chase"
+  },
+  {
+    "question": "What drives the visualizations in The Chase?",
+    "answer": "The visualizations in The Chase are driven by scroll progress. As the user scrolls through the page, the visualizations load or change accordingly, creating an immersive experience that narrates an NBA championship run.",
+    "subject": "Project - The Chase"
+  },
+  {
+    "question": "What is the main function of AlgoTrade?",
+    "answer": "The main function of AlgoTrade is to serve as an AI-driven algorithmic trading platform that facilitates high-frequency trading by integrating machine learning classification with real-time forex execution. It uses MetaTrader 5, WebSocket data streams, and FastAPI to ensure rapid, sub-millisecond latency in processing and executing trades based on AI predictions.",
+    "subject": "Project - AlgoTrade"
+  },
+  {
+    "question": "Which platform is used for real-time FX execution in AlgoTrade?",
+    "answer": "The platform used for real-time FX execution in AlgoTrade is MetaTrader 5.",
+    "subject": "Project - AlgoTrade"
+  },
+  {
+    "question": "What data streams are used in AlgoTrade?",
+    "answer": "The data streams used in AlgoTrade are WebSocket data streams.",
+    "subject": "Project - AlgoTrade"
+  },
+  {
+    "question": "What framework is used for inference in AlgoTrade?",
+    "answer": "The framework used for inference in AlgoTrade is FastAPI.",
+    "subject": "Project - AlgoTrade"
+  },
+  {
+    "question": "What is the goal of the Late Delivery Prediction project?",
+    "answer": "The goal of the Late Delivery Prediction project was to develop a system using data mining and machine learning to predict late deliveries and extract business insights from a Brazilian e-commerce dataset. This aimed to enhance logistics management by forecasting delays and providing actionable insights to optimize operations, such as improving delivery routes or adjusting customer service strategies.",
+    "subject": "Project - Late Delivery Prediction & Customer Segmentation"
+  },
+  {
+    "question": "What type of dataset is used in this project?",
+    "answer": "The dataset used in the project is a large-scale Brazilian e-commerce dataset.",
+    "subject": "Project - Late Delivery Prediction & Customer Segmentation"
+  }
+]

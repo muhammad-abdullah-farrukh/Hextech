@@ -1,0 +1,202 @@
+[
+  {
+    "question": "What is the full name of the individual described in the document?",
+    "answer": "The full name of the individual described in the document is Abdullah Zahid.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the date of birth of Abdullah Zahid?",
+    "answer": "The date of birth of Abdullah Zahid is 22nd September 2003.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the current profession or occupation of Abdullah Zahid?",
+    "answer": "Based on the information provided in the document, Abdullah Zahid's current profession or occupation is a Reinforcement Learning Intern at the NASTP Center of Artificial Intelligence Cluster in Rawalpindi, Pakistan.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the country of residence of Abdullah Zahid?",
+    "answer": "The country of residence of Abdullah Zahid is Pakistan.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the current city of residence of Abdullah Zahid?",
+    "answer": "The current city of residence of Abdullah Zahid is Islamabad, Pakistan.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the primary field of study or academic background of Abdullah Zahid?",
+    "answer": "The primary field of study or academic background of Abdullah Zahid is Electrical Engineering. He is currently pursuing a BSc in Electrical Engineering at Air University, Islamabad.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the current CGPA of Abdullah Zahid in his BSc program?",
+    "answer": "The current CGPA of Abdullah Zahid in his BSc program is 2.62/4.0.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the date range of Abdullah Zahid's BSc Electrical Engineering program?",
+    "answer": "The date range of Abdullah Zahid's BSc Electrical Engineering program is from September 2021 to June 2025.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the name of the university where Abdullah Zahid is currently enrolled for his BSc?",
+    "answer": "The name of the university where Abdullah Zahid is currently enrolled for his BSc is Air University, Islamabad.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the name of the college where Abdullah Zahid completed his FSc?",
+    "answer": "The name of the college where Abdullah Zahid completed his FSc is OPF College, Islamabad.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the date range of Abdullah Zahid's FSc Pre-Engineering program?",
+    "answer": "The date range of Abdullah Zahid's FSc Pre-Engineering program is from March 2019 to April 2021.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the name of the school where Abdullah Zahid completed his Matriculation?",
+    "answer": "The name of the school where Abdullah Zahid completed his Matriculation is Pakistan International School in Jeddah, KSA.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the country where Abdullah Zahid completed his Matriculation?",
+    "answer": "Abdullah Zahid completed his Matriculation at Pakistan Intl. School, Jeddah, KSA. Therefore, the country where he completed his Matriculation is Saudi Arabia.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the date range of Abdullah Zahid's Matriculation program?",
+    "answer": "The date range of Abdullah Zahid's Matriculation program is May 2017 \u2013 Feb 2019.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the primary language spoken at home by Abdullah Zahid?",
+    "answer": "The provided document does not specify the primary language spoken at home by Abdullah Zahid.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the level of English proficiency of Abdullah Zahid?",
+    "answer": "Abdullah Zahid has an English proficiency level of C2.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the level of Urdu proficiency of Abdullah Zahid?",
+    "answer": "The level of Urdu proficiency of Abdullah Zahid is C2.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the level of Arabic proficiency of Abdullah Zahid?",
+    "answer": "The level of Arabic proficiency of Abdullah Zahid is A1.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the level of French proficiency of Abdullah Zahid?",
+    "answer": "Abdullah Zahid has a French proficiency level of A1.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the name of the university where Abdullah Zahid completed his FSc?",
+    "answer": "The name of the university where Abdullah Zahid completed his FSc is OPF College, Islamabad.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the name of the school where Abdullah Zahid completed his Matriculation?",
+    "answer": "The name of the school where Abdullah Zahid completed his Matriculation is Pakistan International School, Jeddah, KSA.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the city where Abdullah Zahid completed his Matriculation?",
+    "answer": "Abdullah Zahid completed his Matriculation at Pakistan Intl. School in Jeddah, KSA. Therefore, the city is Jeddah.",
+    "subject": "person"
+  },
+  {
+    "question": "What is the role of Abdullah Zahid at the NASTP Center of Artificial Intelligence Cluster?",
+    "answer": "At the NASTP Center of Artificial Intelligence Cluster, Abdullah Zahid serves as a **Reinforcement Learning Intern**. In this role, he pioneers intelligent decision-making agents for dynamic environments, blending cutting-edge reinforcement learning (RL) research with practical simulations. His work focuses on autonomous swarming and tactical aerial coordination for high-fidelity defense applications.",
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster"
+  },
+  {
+    "question": "What is the name of the organization where Abdullah Zahid is currently employed?",
+    "answer": "Abdullah Zahid is currently employed at the NASTP Center of Artificial Intelligence Cluster in Rawalpindi, Pakistan.",
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster"
+  },
+  {
+    "question": "What is the city where the NASTP Center of Artificial Intelligence Cluster is located?",
+    "answer": "The NASTP Center of Artificial Intelligence Cluster is located in Rawalpindi, Pakistan.",
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster"
+  },
+  {
+    "question": "What is the country where the NASTP Center of Artificial Intelligence Cluster is located?",
+    "answer": "The NASTP Center of Artificial Intelligence Cluster is located in Pakistan.",
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster"
+  },
+  {
+    "question": "What is the date range of Abdullah Zahid's employment at the NASTP Center of Artificial Intelligence Cluster?",
+    "answer": "The date range of Abdullah Zahid's employment at the NASTP Center of Artificial Intelligence Cluster is from November 2025 to the present.",
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster"
+  },
+  {
+    "question": "What is the primary focus of Abdullah Zahid's work at the NASTP Center?",
+    "answer": "The primary focus of Abdullah Zahid's work at the NASTP Center is on Reinforcement Learning, specifically designing and training advanced RL agents using DQN and PPO architectures. His work aims to optimize complex reward systems for stable policy convergence in custom-engineered environments, with an emphasis on autonomous swarming and tactical aerial coordination for high-fidelity defense applications.",
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster"
+  },
+  {
+    "question": "What is the name of the type of AI architecture Abdullah Zahid uses for agent training at NASTP?",
+    "answer": "The AI architectures Abdullah Zahid uses for agent training at NASTP are DQN (Deep Q-Network) and PPO (Proximal Policy Optimization).",
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster"
+  },
+  {
+    "question": "What is the name of the simulation tool Abdullah Zahid uses for flight dynamics modeling?",
+    "answer": "The simulation tool Abdullah Zahid uses for flight dynamics modeling is JSBSim.",
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster"
+  },
+  {
+    "question": "What is the name of the machine learning library Abdullah Zahid uses for policy optimization?",
+    "answer": "Abdullah Zahid uses PyTorch for policy optimization.",
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster"
+  },
+  {
+    "question": "What is the name of the achievement Abdullah Zahid made involving a pursuit-evasion simulation?",
+    "answer": "The name of the achievement Abdullah Zahid made involving a pursuit-evasion simulation is \"Engineered a multi-agent pursuit-evasion simulation involving two aircraft using JSBSim and OpenAI Gym in Python with PyTorch for policy optimization.\"",
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster"
+  },
+  {
+    "question": "What is the name of the ongoing project Abdullah Zahid is working on at NASTP?",
+    "answer": "The ongoing project Abdullah Zahid is working on at NASTP is architecting a multi-agent 2v1 coordination framework to enable team-based swarming behavior, where two agents collaborate via shared reward signals to intercept a high-speed target agent.",
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster"
+  },
+  {
+    "question": "What is the role of Abdullah Zahid in his freelance work?",
+    "answer": "In his freelance work, Abdullah Zahid served as a Machine Learning Engineer, providing tailored AI solutions for global clients. His role involved building scalable ML models and optimizing data pipelines to enhance operational efficiency across diverse sectors such as energy and IoT.",
+    "subject": "Job - Freelance Machine Learning Engineer"
+  },
+  {
+    "question": "What is the date range of Abdullah Zahid's freelance work?",
+    "answer": "The date range of Abdullah Zahid's freelance work is from August 2023 to September 2024.",
+    "subject": "Job - Freelance Machine Learning Engineer"
+  },
+  {
+    "question": "What is the primary focus of Abdullah Zahid's freelance work?",
+    "answer": "The primary focus of Abdullah Zahid's freelance work is providing tailored AI solutions, with an emphasis on building scalable machine learning models and optimizing data pipelines to enhance operational efficiency across sectors like energy and IoT.",
+    "subject": "Job - Freelance Machine Learning Engineer"
+  },
+  {
+    "question": "What is the name of the tool Abdullah Zahid uses to track the carbon footprint of model training?",
+    "answer": "The name of the tool Abdullah Zahid uses to track the carbon footprint of model training is CodeCarbon.",
+    "subject": "Job - Freelance Machine Learning Engineer"
+  },
+  {
+    "question": "What is the name of the type of models Abdullah Zahid deploys in his freelance work?",
+    "answer": "Abdullah Zahid deploys predictive models in his freelance work. Specifically, he mentions models including Regression, KNN, and SVM architectures.",
+    "subject": "Job - Freelance Machine Learning Engineer"
+  },
+  {
+    "question": "What is the name of the machine learning library Abdullah Zahid uses in his freelance work?",
+    "answer": "Based on the provided information, Abdullah Zahid uses Scikit-learn in his freelance work for training and deploying predictive optimization models.",
+    "subject": "Job - Freelance Machine Learning Engineer"
+  },
+  {
+    "question": "What is the name of the responsibility involving end-to-end pipeline development in Abdullah Zahid's freelance role?",
+    "answer": "The responsibility involving end-to-end pipeline development in Abdullah Zahid's freelance role is: \n\n\"Designed and deployed predictive models \u2014 including Regression, KNN, and SVM architectures \u2014 while managing the complete lifecycle from data cleaning to real-time deployment for autonomous agents.\"",
+    "subject": "Job - Freelance Machine Learning Engineer"
+  }
+]

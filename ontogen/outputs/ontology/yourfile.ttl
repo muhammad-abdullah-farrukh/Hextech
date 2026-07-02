@@ -1,0 +1,139 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix wikibase: <http://wikiba.se/ontology#> .
+@prefix schema: <http://schema.org/> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+
+wdt:DateOfBirth a wikibase:Property ;
+    schema:description "date on which the subject was born" ;
+    rdfs:label "DateOfBirth"@en .
+
+wdt:Residence a wikibase:Property ;
+    schema:description "the place where the person is or has been, resident" ;
+    rdfs:label "Residence"@en .
+
+wdt:ProfessionalRole a wikibase:Property ;
+    rdfs:label "professional role" ;
+    rdfs:comment "The current or most relevant professional role of the subject." ;
+    rdfs:domain wd:Person ;
+    rdfs:range wd:ProfessionalRoleType .
+wdt:CGPA a wikibase:Property ;
+    schema:description "The cumulative grade point average achieved in an academic program." ;
+    rdfs:label "CGPA" ;
+    rdfs:domain wd:AcademicProgram, wd:StudentRecord ;
+    rdfs:range xsd:float .
+wdt:P123 a wikibase:Property ;
+    schema:description "The time period in which the matriculation was completed." ;
+    rdfs:label "duration of matriculation" ;
+    rdfs:domain wd:MatriculationEvent ;
+    rdfs:range xsd:duration .
+wdt:EducatedAt a wikibase:Property ;
+    schema:description "educational institution attended by subject" ;
+    rdfs:label "EducatedAt"@en .
+
+wdt:location_of_university a wikibase:Property ;
+    rdfs:label "location of university" ;
+    rdfs:comment "The city where the subject's university is located." ;
+    rdfs:domain wd:University ;
+    rdfs:range wd:City .
+wdt:Director/Manager a wikibase:Property ;
+    schema:description "person who manages any kind of group or organisation" ;
+    rdfs:label "Director/Manager"@en .
+
+wdt:HeadquartersLocation a wikibase:Property ;
+    schema:description "city or town where an organization's headquarters is or has been situated. Use P276 qualifier for specific building" ;
+    rdfs:label "HeadquartersLocation"@en .
+
+wdt:P39 a wikibase:Property ;
+    schema:description "The time period during which a specific job role was held." ;
+    rdfs:label "duration of role" ;
+    rdfs:domain wd:office, wd:position_held, wd:job_title ;
+    rdfs:range xsd:duration .
+wdt:FocusOfWork a wikibase:Property ;
+    rdfs:label "focus of work" ;
+    rdfs:comment "The primary area or topic of the subject's professional activities." ;
+    rdfs:domain wd:Person, wd:Organization, wd:Project ;
+    rdfs:range rdfs:Resource, wd:FieldOfStudy, wd:Topic, wd:Activity .
+wdt:Achievements a wikibase:Property ;
+    schema:description "The notable accomplishments made in a job role." ;
+    rdfs:label "achievements" ;
+    rdfs:domain wd:JobRole, wd:Occupation, wd:Position ;
+    rdfs:range rdfs:Literal .
+wdt:RoleInFreelance a wikibase:Property ;
+    schema:description "The position or function the subject held during freelance work." ;
+    rdfs:label "role in freelance" ;
+    rdfs:domain wd:Person ;
+    rdfs:range rdfs:Literal .
+wdt:CarbonTrackingTool a wikibase:Property ;
+    schema:description "The tool used to measure and track carbon footprint in a project." ;
+    rdfs:label "carbon tracking tool" ;
+    rdfs:domain wd:project, wd:environmental_assessment, wd:carbon_footprint_study ;
+    rdfs:range wd:software_tool, wd:carbon_measurement_tool, wd:environmental_monitoring_system .
+wdt:Responsibilities a wikibase:Property ;
+    schema:description "The key tasks or duties performed in a job role." ;
+    rdfs:label "responsibilities" ;
+    rdfs:domain wd:JobRole, wd:Occupation, wd:Position ;
+    rdfs:range rdfs:Literal .
+wdt:countryOfResidence a wikibase:Property ;
+    rdfs:label "country of residence" ;
+    rdfs:comment "The country where the subject currently resides." ;
+    rdfs:domain wd:Person ;
+    rdfs:range wd:Country .
+wdt:FieldOfStudy a wikibase:Property ;
+    schema:description "The primary academic discipline or area of study." ;
+    rdfs:label "field of study" ;
+    rdfs:domain wd:AcademicDiscipline, wd:ResearchArea, wd:UniversityDepartment ;
+    rdfs:range wd:AcademicField, wd:ScientificDomain, wd:StudyProgram .
+wdt:CountryOfProgram a wikibase:Property ;
+    rdfs:label "CountryOfProgram" ;
+    rdfs:domain wd:AcademicProgram ;
+    rdfs:range wd:Country ;
+    schema:description "The country where an academic program was completed." .
+wdt:LanguageProficiency a wikibase:Property ;
+    rdfs:label "language proficiency" ;
+    schema:description "The level of proficiency in a language." ;
+    rdfs:domain wd:Person ;
+    rdfs:range wd:ProficiencyLevel .
+wdt:nameOfOrganization a wikibase:Property ;
+    rdfs:label "nameOfOrganization" ;
+    rdfs:comment "The name of the organization where the role was held." ;
+    rdfs:domain wd:Role ;
+    rdfs:range xsd:string .
+wdt:countryOfOrganization a wikibase:Property ;
+    schema:description "The country where the organization is located." ;
+    rdfs:label "country of organization" ;
+    rdfs:domain wd:Organization ;
+    rdfs:range wd:Country .
+wdt:nameOfAIArchitecture a wikibase:Property ;
+    rdfs:label "name of AI architecture" ;
+    rdfs:comment "The specific type of AI architecture used." ;
+    rdfs:domain wd:AIModel, wd:NeuralNetwork, wd:MachineLearningSystem ;
+    rdfs:range xsd:string .
+wdt:nameOfSimulationTool a wikibase:Property ;
+    rdfs:label "name of simulation tool" ;
+    rdfs:domain wd:Simulation ;
+    rdfs:range xsd:string ;
+    schema:description "The name of the simulation software used." .
+wdt:nameOfMachineLearningLibrary a wikibase:Property ;
+    rdfs:label "name of machine learning library" ;
+    rdfs:domain wd:MachineLearningLibrary ;
+    rdfs:range xsd:string ;
+    schema:description "The name of the ML library used." .
+wdt:nameOfOngoingProject a wikibase:Property ;
+    schema:description "The name or description of a project currently in progress." ;
+    rdfs:label "name of ongoing project" ;
+    rdfs:domain wd:Project ;
+    rdfs:range xsd:string .
+wdt:PrimaryFocusOfFreelanceWork a wikibase:Property ;
+    schema:description "The main objective or domain of freelance work." ;
+    rdfs:label "primary focus of freelance work" ;
+    rdfs:domain wd:FreelanceWork ;
+    rdfs:range wd:WorkDomain, wd:ProfessionalObjective, wd:IndustrySector .
+wdt:modelType a wikibase:Property ;
+    rdfs:label "modelType" ;
+    rdfs:domain wd:machine_learning_model ;
+    rdfs:range wd:model_category ;
+    schema:description "The type of machine learning models deployed." .

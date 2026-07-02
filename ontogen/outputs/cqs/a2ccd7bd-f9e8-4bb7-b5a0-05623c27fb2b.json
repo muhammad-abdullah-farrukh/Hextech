@@ -1,0 +1,66 @@
+[
+  {
+    "subject": "AutoPEFT B",
+    "question": "What techniques were used to architect the autonomous, hardware-aware Parameter-Efficient Fine-Tuning (PEFT) system for Qwen2.5 7B LLMs?"
+  },
+  {
+    "subject": "AutoPEFT B",
+    "question": "What type of LLM was optimized using the AutoPEFT B system?"
+  },
+  {
+    "subject": "AutoPEFT B",
+    "question": "What neural network components were engineered to predict validation loss and peak VRAM?"
+  },
+  {
+    "subject": "AutoPEFT B",
+    "question": "What percentage reduction in VRAM was achieved with the AutoPEFT B system?"
+  },
+  {
+    "subject": "AutoPEFT B",
+    "question": "What percentage storage compression was achieved while maintaining model accuracy?"
+  },
+  {
+    "subject": "AutoPEFT B",
+    "question": "What MLOps stack components were deployed for comprehensive monitoring and scalable operations?"
+  },
+  {
+    "subject": "CryptoSentinel",
+    "question": "What machine learning pipeline was built for short-term cryptocurrency price prediction?"
+  },
+  {
+    "subject": "CryptoSentinel",
+    "question": "What CI/CD tools were integrated with Hopsworks for feature storage and training?"
+  },
+  {
+    "subject": "CryptoSentinel",
+    "question": "What metrics were used to evaluate model performance in CryptoSentinel?"
+  },
+  {
+    "subject": "Real-Time ASL Detection & Translation System",
+    "question": "What model architecture was used for real-time ASL detection?"
+  },
+  {
+    "subject": "Real-Time ASL Detection & Translation System",
+    "question": "What data pipeline components were integrated for ASL detection?"
+  },
+  {
+    "subject": "Real-Time ASL Detection & Translation System",
+    "question": "What method was used to process video streams for real-time ASL predictions?"
+  },
+  {
+    "subject": "Algorithmic Optimization for Frequent Itemset Mining",
+    "question": "How many FIM algorithms were engineered and benchmarked?"
+  },
+  {
+    "subject": "Algorithmic Optimization for Frequent Itemset Mining",
+    "question": "What speedup was achieved with the hardware-native bitset Apriori variant?"
+  },
+  {
+    "subject": "Algorithmic Optimization for Frequent Itemset Mining",
+    "question": "What reinforcement learning heuristic was developed for frequent itemset mining?"
+  },
+  {
+    "subject": "Algorithmic Optimization for Frequent Itemset Mining",
+    "question": "What percentage of frequent itemsets were recovered using the GIM-RL heuristic?"
+  }
+]

@@ -1,0 +1,233 @@
+[
+  {
+    "extracted": {
+      "property": "date of birth",
+      "description": "The date on which the subject was born."
+    },
+    "wikidata_match": {
+      "pid": "P569",
+      "label": "DateOfBirth",
+      "description": "date on which the subject was born"
+    }
+  },
+  {
+    "extracted": {
+      "property": "country of residence",
+      "description": "The country where the subject currently resides."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "city of residence",
+      "description": "The city where the subject currently resides."
+    },
+    "wikidata_match": {
+      "pid": "P551",
+      "label": "Residence",
+      "description": "the place where the person is or has been, resident"
+    }
+  },
+  {
+    "extracted": {
+      "property": "occupation",
+      "description": "The current profession or occupation of the subject."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "field of study",
+      "description": "The primary academic discipline or area of study."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "CGPA",
+      "description": "The current grade point average in an academic program."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "date range of program",
+      "description": "The start and end dates of an academic program."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "name of university",
+      "description": "The name of the university where a program was completed."
+    },
+    "wikidata_match": {
+      "pid": "P69",
+      "label": "EducatedAt",
+      "description": "educational institution attended by subject"
+    }
+  },
+  {
+    "extracted": {
+      "property": "name of college",
+      "description": "The name of the college where a program was completed."
+    },
+    "wikidata_match": {
+      "pid": "P69",
+      "label": "EducatedAt",
+      "description": "educational institution attended by subject"
+    }
+  },
+  {
+    "extracted": {
+      "property": "name of school",
+      "description": "The name of the school where a program was completed."
+    },
+    "wikidata_match": {
+      "pid": "P69",
+      "label": "EducatedAt",
+      "description": "educational institution attended by subject"
+    }
+  },
+  {
+    "extracted": {
+      "property": "country of program",
+      "description": "The country where an academic program was completed."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "city of program",
+      "description": "The city where an academic program was completed."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "language proficiency",
+      "description": "The level of proficiency in a language."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "role at organization",
+      "description": "The job position or role held at an organization."
+    },
+    "wikidata_match": {
+      "pid": "P1037",
+      "label": "Director/Manager",
+      "description": "person who manages any kind of group or organisation"
+    }
+  },
+  {
+    "extracted": {
+      "property": "name of organization",
+      "description": "The name of the organization where the role was held."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "city of organization",
+      "description": "The city where the organization is located."
+    },
+    "wikidata_match": {
+      "pid": "P159",
+      "label": "HeadquartersLocation",
+      "description": "city or town where an organization's headquarters is or has been situated. Use P276 qualifier for specific building"
+    }
+  },
+  {
+    "extracted": {
+      "property": "country of organization",
+      "description": "The country where the organization is located."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "date range of employment",
+      "description": "The start and end dates of employment at an organization."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "primary focus of work",
+      "description": "The main area or objective of the work performed."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "name of AI architecture",
+      "description": "The specific type of AI architecture used."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "name of simulation tool",
+      "description": "The name of the simulation software used."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "name of machine learning library",
+      "description": "The name of the ML library used."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "name of achievement",
+      "description": "The specific accomplishment related to a simulation or project."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "name of ongoing project",
+      "description": "The name or description of a project currently in progress."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "role in freelance work",
+      "description": "The job title or function in freelance work."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "primary focus of freelance work",
+      "description": "The main objective or domain of freelance work."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "name of carbon footprint tracking tool",
+      "description": "The name of the tool used to monitor carbon emissions."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "name of model type",
+      "description": "The type of machine learning models deployed."
+    },
+    "wikidata_match": null
+  },
+  {
+    "extracted": {
+      "property": "name of responsibility",
+      "description": "A specific task or duty performed in a role."
+    },
+    "wikidata_match": null
+  }
+]

@@ -1,0 +1,162 @@
+[
+  {
+    "subject": "person",
+    "question": "What is the full name of the individual described in the document?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the date of birth of Abdullah Zahid?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the current profession or occupation of Abdullah Zahid?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the country of residence of Abdullah Zahid?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the current city of residence of Abdullah Zahid?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the primary field of study or academic background of Abdullah Zahid?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the current CGPA of Abdullah Zahid in his BSc program?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the date range of Abdullah Zahid's BSc Electrical Engineering program?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the name of the university where Abdullah Zahid is currently enrolled for his BSc?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the name of the college where Abdullah Zahid completed his FSc?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the date range of Abdullah Zahid's FSc Pre-Engineering program?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the name of the school where Abdullah Zahid completed his Matriculation?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the country where Abdullah Zahid completed his Matriculation?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the date range of Abdullah Zahid's Matriculation program?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the primary language spoken at home by Abdullah Zahid?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the level of English proficiency of Abdullah Zahid?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the level of Urdu proficiency of Abdullah Zahid?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the level of Arabic proficiency of Abdullah Zahid?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the level of French proficiency of Abdullah Zahid?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the name of the university where Abdullah Zahid completed his FSc?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the name of the school where Abdullah Zahid completed his Matriculation?"
+  },
+  {
+    "subject": "person",
+    "question": "What is the city where Abdullah Zahid completed his Matriculation?"
+  },
+  {
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster",
+    "question": "What is the role of Abdullah Zahid at the NASTP Center of Artificial Intelligence Cluster?"
+  },
+  {
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster",
+    "question": "What is the name of the organization where Abdullah Zahid is currently employed?"
+  },
+  {
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster",
+    "question": "What is the city where the NASTP Center of Artificial Intelligence Cluster is located?"
+  },
+  {
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster",
+    "question": "What is the country where the NASTP Center of Artificial Intelligence Cluster is located?"
+  },
+  {
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster",
+    "question": "What is the date range of Abdullah Zahid's employment at the NASTP Center of Artificial Intelligence Cluster?"
+  },
+  {
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster",
+    "question": "What is the primary focus of Abdullah Zahid's work at the NASTP Center?"
+  },
+  {
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster",
+    "question": "What is the name of the type of AI architecture Abdullah Zahid uses for agent training at NASTP?"
+  },
+  {
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster",
+    "question": "What is the name of the simulation tool Abdullah Zahid uses for flight dynamics modeling?"
+  },
+  {
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster",
+    "question": "What is the name of the machine learning library Abdullah Zahid uses for policy optimization?"
+  },
+  {
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster",
+    "question": "What is the name of the achievement Abdullah Zahid made involving a pursuit-evasion simulation?"
+  },
+  {
+    "subject": "Job - NASTP Center of Artificial Intelligence Cluster",
+    "question": "What is the name of the ongoing project Abdullah Zahid is working on at NASTP?"
+  },
+  {
+    "subject": "Job - Freelance Machine Learning Engineer",
+    "question": "What is the role of Abdullah Zahid in his freelance work?"
+  },
+  {
+    "subject": "Job - Freelance Machine Learning Engineer",
+    "question": "What is the date range of Abdullah Zahid's freelance work?"
+  },
+  {
+    "subject": "Job - Freelance Machine Learning Engineer",
+    "question": "What is the primary focus of Abdullah Zahid's freelance work?"
+  },
+  {
+    "subject": "Job - Freelance Machine Learning Engineer",
+    "question": "What is the name of the tool Abdullah Zahid uses to track the carbon footprint of model training?"
+  },
+  {
+    "subject": "Job - Freelance Machine Learning Engineer",
+    "question": "What is the name of the type of models Abdullah Zahid deploys in his freelance work?"
+  },
+  {
+    "subject": "Job - Freelance Machine Learning Engineer",
+    "question": "What is the name of the machine learning library Abdullah Zahid uses in his freelance work?"
+  },
+  {
+    "subject": "Job - Freelance Machine Learning Engineer",
+    "question": "What is the name of the responsibility involving end-to-end pipeline development in Abdullah Zahid's freelance role?"
+  }
+]

@@ -1,0 +1,118 @@
+[
+  {
+    "property": "date of birth",
+    "description": "The date on which the subject was born."
+  },
+  {
+    "property": "country of residence",
+    "description": "The country where the subject currently resides."
+  },
+  {
+    "property": "city of residence",
+    "description": "The city where the subject currently resides."
+  },
+  {
+    "property": "occupation",
+    "description": "The current profession or occupation of the subject."
+  },
+  {
+    "property": "field of study",
+    "description": "The primary academic discipline or area of study."
+  },
+  {
+    "property": "CGPA",
+    "description": "The current grade point average in an academic program."
+  },
+  {
+    "property": "date range of program",
+    "description": "The start and end dates of an academic program."
+  },
+  {
+    "property": "name of university",
+    "description": "The name of the university where a program was completed."
+  },
+  {
+    "property": "name of college",
+    "description": "The name of the college where a program was completed."
+  },
+  {
+    "property": "name of school",
+    "description": "The name of the school where a program was completed."
+  },
+  {
+    "property": "country of program",
+    "description": "The country where an academic program was completed."
+  },
+  {
+    "property": "city of program",
+    "description": "The city where an academic program was completed."
+  },
+  {
+    "property": "language proficiency",
+    "description": "The level of proficiency in a language."
+  },
+  {
+    "property": "role at organization",
+    "description": "The job position or role held at an organization."
+  },
+  {
+    "property": "name of organization",
+    "description": "The name of the organization where the role was held."
+  },
+  {
+    "property": "city of organization",
+    "description": "The city where the organization is located."
+  },
+  {
+    "property": "country of organization",
+    "description": "The country where the organization is located."
+  },
+  {
+    "property": "date range of employment",
+    "description": "The start and end dates of employment at an organization."
+  },
+  {
+    "property": "primary focus of work",
+    "description": "The main area or objective of the work performed."
+  },
+  {
+    "property": "name of AI architecture",
+    "description": "The specific type of AI architecture used."
+  },
+  {
+    "property": "name of simulation tool",
+    "description": "The name of the simulation software used."
+  },
+  {
+    "property": "name of machine learning library",
+    "description": "The name of the ML library used."
+  },
+  {
+    "property": "name of achievement",
+    "description": "The specific accomplishment related to a simulation or project."
+  },
+  {
+    "property": "name of ongoing project",
+    "description": "The name or description of a project currently in progress."
+  },
+  {
+    "property": "role in freelance work",
+    "description": "The job title or function in freelance work."
+  },
+  {
+    "property": "primary focus of freelance work",
+    "description": "The main objective or domain of freelance work."
+  },
+  {
+    "property": "name of carbon footprint tracking tool",
+    "description": "The name of the tool used to monitor carbon emissions."
+  },
+  {
+    "property": "name of model type",
+    "description": "The type of machine learning models deployed."
+  },
+  {
+    "property": "name of responsibility",
+    "description": "A specific task or duty performed in a role."
+  }
+]

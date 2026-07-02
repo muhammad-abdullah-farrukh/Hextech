@@ -1,0 +1,66 @@
+[
+  {
+    "property": "technique used",
+    "description": "The specific techniques applied to architect the system."
+  },
+  {
+    "property": "optimized LLM",
+    "description": "The type of LLM that was optimized using the system."
+  },
+  {
+    "property": "neural network components",
+    "description": "The specific neural network components engineered."
+  },
+  {
+    "property": "VRAM reduction",
+    "description": "The percentage reduction in VRAM achieved."
+  },
+  {
+    "property": "storage compression",
+    "description": "The percentage storage compression achieved."
+  },
+  {
+    "property": "MLOps components",
+    "description": "The components of the MLOps stack deployed."
+  },
+  {
+    "property": "ML pipeline",
+    "description": "The type of machine learning pipeline built."
+  },
+  {
+    "property": "CI/CD tools",
+    "description": "The CI/CD tools integrated with Hopsworks."
+  },
+  {
+    "property": "evaluation metrics",
+    "description": "The metrics used to evaluate model performance."
+  },
+  {
+    "property": "model architecture",
+    "description": "The architecture used for real-time ASL detection."
+  },
+  {
+    "property": "data pipeline components",
+    "description": "The components integrated for ASL detection."
+  },
+  {
+    "property": "video stream processing method",
+    "description": "The method used to process video streams."
+  },
+  {
+    "property": "number of FIM algorithms",
+    "description": "The number of FIM algorithms engineered and benchmarked."
+  },
+  {
+    "property": "speedup achieved",
+    "description": "The factor by which execution was sped up."
+  },
+  {
+    "property": "reinforcement learning heuristic",
+    "description": "The heuristic developed for frequent itemset mining."
+  },
+  {
+    "property": "frequent itemsets recovered",
+    "description": "The percentage of frequent itemsets recovered using the heuristic."
+  }
+]

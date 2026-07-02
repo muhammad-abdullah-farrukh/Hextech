@@ -1,0 +1,14 @@
+[
+  {
+    "property": "algorithm used",
+    "description": "The algorithm utilized in a specific simulation or framework."
+  },
+  {
+    "property": "purpose",
+    "description": "The intended goal or objective of a simulation or framework."
+  },
+  {
+    "property": "status",
+    "description": "The current state or progress of a framework or project."
+  }
+]

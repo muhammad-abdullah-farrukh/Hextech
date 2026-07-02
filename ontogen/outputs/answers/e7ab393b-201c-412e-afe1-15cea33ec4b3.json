@@ -1,0 +1,22 @@
+[
+  {
+    "question": "What algorithm was used to engineer the 1v1 Pursuit-Evasion Simulation?",
+    "answer": "The algorithm used to engineer the 1v1 Pursuit-Evasion Simulation was Proximal Policy Optimization (PPO).",
+    "subject": "Project - 1v1 Pursuit-Evasion Simulation"
+  },
+  {
+    "question": "What was the purpose of the 1v1 Pursuit-Evasion Simulation?",
+    "answer": "The purpose of the 1v1 Pursuit-Evasion Simulation was to engineer a simulation using Proximal Policy Optimization (PPO) algorithms to achieve optimal positioning strategies in a one-on-one pursuit and evasion scenario.",
+    "subject": "Project - 1v1 Pursuit-Evasion Simulation"
+  },
+  {
+    "question": "What is the purpose of the Multi-Agent 2v1 Coordination Framework?",
+    "answer": "The purpose of the Multi-Agent 2v1 Coordination Framework is to develop a system that enables multiple agents to coordinate and exhibit team-based swarming behavior in a 2v1 scenario.",
+    "subject": "Project - Multi-Agent 2v1 Coordination Framework"
+  },
+  {
+    "question": "What is the current status of the Multi-Agent 2v1 Coordination Framework?",
+    "answer": "The Multi-Agent 2v1 Coordination Framework is currently in progress, indicating that it is still under development and has not yet been completed.",
+    "subject": "Project - Multi-Agent 2v1 Coordination Framework"
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "question": "What techniques were used to architect the autonomous, hardware-aware Parameter-Efficient Fine-Tuning (PEFT) system for Qwen2.5 7B LLMs?",
+    "answer": "The techniques used to architect the autonomous, hardware-aware Parameter-Efficient Fine-Tuning (PEFT) system for Qwen2.5 7B LLMs include:\n\n1. **QLoRA**: A method for efficient fine-tuning of large language models.\n2. **Bayesian Optimization**: An optimization technique used for hyperparameter tuning.\n3. **Dual-headed MLP and GRU Surrogate Neural Network**: This model was used to predict validation loss and peak VRAM, aiding in resource optimization.\n\nThese techniques collectively enabled efficient and hardware-aware optimization of the model.",
+    "subject": "AutoPEFT B"
+  },
+  {
+    "question": "What type of LLM was optimized using the AutoPEFT B system?",
+    "answer": "The AutoPEFT B system was used to optimize the Qwen2.5 7B LLM.",
+    "subject": "AutoPEFT B"
+  },
+  {
+    "question": "What neural network components were engineered to predict validation loss and peak VRAM?",
+    "answer": "The neural network components engineered to predict validation loss and peak VRAM were a dual-headed MLP (Multi-Layer Perceptron) and GRU (Gated Recurrent Unit). This combination allowed for accurate predictions by leveraging the strengths of both network types, with MLP handling non-linear relationships and GRU processing sequential data. \n\n**Answer:** The neural network components were a dual-headed MLP and GRU.",
+    "subject": "AutoPEFT B"
+  },
+  {
+    "question": "What percentage reduction in VRAM was achieved with the AutoPEFT B system?",
+    "answer": "The AutoPEFT B system achieved a 74.1% reduction in VRAM usage. \n\nAnswer: The AutoPEFT B system achieved a 74.1% reduction in VRAM.",
+    "subject": "AutoPEFT B"
+  },
+  {
+    "question": "What percentage storage compression was achieved while maintaining model accuracy?",
+    "answer": "The storage compression achieved while maintaining model accuracy was 66.2%.",
+    "subject": "AutoPEFT B"
+  },
+  {
+    "question": "What MLOps stack components were deployed for comprehensive monitoring and scalable operations?",
+    "answer": "The MLOps stack components deployed for comprehensive monitoring and scalable operations in the AutoPEFT B project include:\n\n1. **DVC versioned data pipelines**: Ensures data version control and reproducibility.\n2. **FastAPI telemetry**: Manages API monitoring and data collection.\n3. **Real-time React dashboard**: Provides a visual interface for real-time monitoring and system oversight.\n\nThese components together enable effective monitoring and scalability for the project.",
+    "subject": "AutoPEFT B"
+  },
+  {
+    "question": "What machine learning pipeline was built for short-term cryptocurrency price prediction?",
+    "answer": "The machine learning pipeline built for short-term cryptocurrency price prediction is **CryptoSentinel**.",
+    "subject": "CryptoSentinel"
+  },
+  {
+    "question": "What CI/CD tools were integrated with Hopsworks for feature storage and training?",
+    "answer": "The CI/CD tool integrated with Hopsworks for feature storage and training is GitHub Actions. This integration was part of the CryptoSentinel project, where GitHub Actions was used to implement CI/CD, working alongside Hopsworks as the feature store and training layer.\n\n**Answer:** GitHub Actions were integrated with Hopsworks for feature storage and training.",
+    "subject": "CryptoSentinel"
+  },
+  {
+    "question": "What metrics were used to evaluate model performance in CryptoSentinel?",
+    "answer": "The metrics used to evaluate model performance in CryptoSentinel were Root Mean Square Error (RMSE) and Mean Absolute Error (MAE). These metrics are suitable for assessing the accuracy of regression models, which is appropriate given the task of predicting cryptocurrency prices.",
+    "subject": "CryptoSentinel"
+  },
+  {
+    "question": "What model architecture was used for real-time ASL detection?",
+    "answer": "The model architecture used for real-time ASL detection was a custom Faster R-CNN with a ResNet-50 FPN backbone.",
+    "subject": "Real-Time ASL Detection & Translation System"
+  },
+  {
+    "question": "What data pipeline components were integrated for ASL detection?",
+    "answer": "The data pipeline components integrated for the ASL detection system include:\n\n1. **Pascal VOC Annotations**: A dataset used for object detection, providing training data.\n2. **MediaPipe Hands**: Utilized for hand detection and tracking, generating precise bounding boxes.\n3. **Base64-encoded Video Streams**: Processed for real-time input, involving decoding and handling video frames.\n\nThese components collectively support both training the model and enabling real-time ASL predictions.",
+    "subject": "Real-Time ASL Detection & Translation System"
+  },
+  {
+    "question": "What method was used to process video streams for real-time ASL predictions?",
+    "answer": "The method used to process video streams for real-time ASL predictions involved handling base64-encoded video streams. The system efficiently processed these encoded streams, likely decoding them and using a custom Faster R-CNN model with MediaPipe Hands to enable real-time detection and translation of ASL signs.",
+    "subject": "Real-Time ASL Detection & Translation System"
+  },
+  {
+    "question": "How many FIM algorithms were engineered and benchmarked?",
+    "answer": "The number of FIM algorithms engineered and benchmarked is four.\n\n**Answer:** Four FIM algorithms were engineered and benchmarked.",
+    "subject": "Algorithmic Optimization for Frequent Itemset Mining"
+  },
+  {
+    "question": "What speedup was achieved with the hardware-native bitset Apriori variant?",
+    "answer": "The hardware-native bitset Apriori variant achieved a speedup of 5 to 10 times over standard Python set intersections.",
+    "subject": "Algorithmic Optimization for Frequent Itemset Mining"
+  },
+  {
+    "question": "What reinforcement learning heuristic was developed for frequent itemset mining?",
+    "answer": "The reinforcement learning heuristic developed for frequent itemset mining is **GIM-RL**. This heuristic is based on a Markov Decision Process with epsilon-greedy exploration, enabling the recovery of up to 95% of frequent itemsets while significantly reducing execution costs.",
+    "subject": "Algorithmic Optimization for Frequent Itemset Mining"
+  },
+  {
+    "question": "What percentage of frequent itemsets were recovered using the GIM-RL heuristic?",
+    "answer": "The GIM-RL heuristic recovered up to 95% of frequent itemsets.",
+    "subject": "Algorithmic Optimization for Frequent Itemset Mining"
+  }
+]
