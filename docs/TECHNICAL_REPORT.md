@@ -51,10 +51,12 @@ HexTech/
     └── tests/test_ontogen_db.py
 ```
 
-> **Environment note:** Ontogen runs inside the parser's virtualenv
-> (`ocr-resume-paser/.venv`) because `ontogen/db/*` imports `resume_parser` for
-> the shared SQLAlchemy models and session factory. The dependency only ever
-> points **Ontogen → parser**, never the reverse.
+> **Environment note:** both subsystems run inside one project-wide virtualenv at
+> `HexTech/.venv`, built from the single pinned `requirements.txt` at the repo
+> root (`pip install --no-deps -r requirements.txt`). Ontogen shares it because
+> `ontogen/db/*` imports `resume_parser` for the shared SQLAlchemy models and
+> session factory — the dependency only ever points **Ontogen → parser**, never
+> the reverse.
 
 ---
 
@@ -216,24 +218,26 @@ extension, which is why the compose image is `pgvector/pgvector:pg17`.
 
 ## 8. How to run
 
-All commands run from the parser repo's venv. See
+All commands run from the project-wide venv at `HexTech/.venv`. See
 `ocr-resume-paser/docs/commands.md` for the fuller reference.
 
 ### 8.1 One-time setup
 ```bash
-cd ocr-resume-paser
-source .venv/bin/activate                 # shared venv (also used by Ontogen)
-set -a && . ./.env && set +a              # loads DATABASE_URL etc.
+# One venv for the whole project (Python 3.10, Linux/CUDA).
+cd HexTech
+python3.10 -m venv .venv
+source .venv/bin/activate
+pip install --no-deps -r requirements.txt   # --no-deps: see requirements.txt header
 
-# Start Postgres (pgvector image; keeps data in the pgdata volume).
-sudo docker compose up -d
+set -a && . ocr-resume-paser/.env && set +a  # loads DATABASE_URL etc.
 
-# Create/upgrade the schema (parser + ontogen tables, migration 0003).
-alembic upgrade head
+# Start Postgres (pgvector image; keeps data in the pgdata volume) and migrate.
+( cd ocr-resume-paser && sudo docker compose up -d && alembic upgrade head )
+#   alembic creates/upgrades the parser + ontogen schema (migration 0003).
 
 # One-time: seed Ontogen's corpus stores (gazetteers, canon store, wikidata
 # properties) from the on-disk files, re-embedding with bge-small-en.
-python ../ontogen/scripts/migrate_ontogen_files_to_db.py
+python ontogen/scripts/migrate_ontogen_files_to_db.py
 ```
 
 ### 8.2 Normal run (parse → build KG)
@@ -245,23 +249,26 @@ python run_pipeline.py
 
 ### 8.3 Run the pieces individually
 ```bash
-# Parse one PDF into Postgres.
-python -m resume_parser.cli "resumes/Riyan Resume.pdf" --db-uri "$DATABASE_URL"
+# All commands run from the HexTech repo root with the .venv active.
+
+# Parse one PDF into Postgres (the parser CLI expects the ocr-resume-paser cwd).
+( cd ocr-resume-paser && python -m resume_parser.cli "resumes/Riyan Resume.pdf" \
+    --field-spec config/field_spec.json --db-uri "$DATABASE_URL" )
 
 # Ontogen over résumés already in the database.
-python ../ontogen/pipeline.py                 # all résumés
-python ../ontogen/pipeline.py <resume_uuid>   # one
-python ../ontogen/pipeline.py --resume        # skip résumés with a succeeded kg_facts row
+python ontogen/pipeline.py                 # all résumés
+python ontogen/pipeline.py <resume_uuid>   # one
+python ontogen/pipeline.py --resume        # skip résumés with a succeeded kg_facts row
 
 # Load the staged graph into Neo4j (incremental — only unsynced rows).
-python ../ontogen/graphdb/load_to_neo4j.py
-python ../ontogen/graphdb/load_to_neo4j.py --wipe    # clear the graph first
+python ontogen/graphdb/load_to_neo4j.py
+python ontogen/graphdb/load_to_neo4j.py --wipe    # clear the graph first
 ```
 
 ### 8.4 Tests
 ```bash
-python -m pytest tests/test_db_ingest.py -q          # parser DB tests
-python -m pytest ../ontogen/tests/test_ontogen_db.py -q   # ontogen DB layer (real Postgres)
+python -m pytest ocr-resume-paser/tests -q            # parser suite
+python -m pytest ontogen/tests/test_ontogen_db.py -q  # ontogen DB layer (real Postgres)
 ```
 
 ### 8.5 View the graph

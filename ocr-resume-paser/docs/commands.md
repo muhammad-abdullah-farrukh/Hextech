@@ -11,9 +11,20 @@ database. Commands assume you're in the repo root (`~/ocr-resume-paser`).
 
 ## 0. One-time / per-shell setup
 
+Dependencies for the whole project live in one venv at the **repo root**
+(`HexTech/.venv`), built from `HexTech/requirements.txt`. Create it once:
+
 ```bash
-# Activate the Python virtualenv (has all deps: sqlalchemy, psycopg2, alembic, ...).
-source .venv/bin/activate
+# One-time (from the HexTech repo root, one level up):
+( cd .. && python3.10 -m venv .venv && .venv/bin/pip install --no-deps -r requirements.txt )
+#   --no-deps installs the exact pinned closure — see requirements.txt header.
+```
+
+Then, per shell (these examples assume you're in `ocr-resume-paser/`):
+
+```bash
+# Activate the project-wide venv (serves both the parser and Ontogen).
+source ../.venv/bin/activate
 
 # Load the env vars (DATABASE_URL, TEST_DATABASE_URL, LLM_* ) into this shell.
 set -a && . ./.env && set +a

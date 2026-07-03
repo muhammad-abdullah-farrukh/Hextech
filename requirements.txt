@@ -1,3 +1,29 @@
+# =============================================================================
+# HexTech — universal, pinned dependencies for the WHOLE project.
+#
+# Covers BOTH subsystems (ocr-resume-paser/ and ontogen/), which share one
+# virtualenv (Ontogen imports resume_parser via sys.path). This is a complete,
+# already-resolved freeze of a known-good environment.
+#
+#   Python:   3.10  (resolved under 3.10.12)
+#   Platform: Linux + CUDA — the OCR stack (marker-pdf, surya-ocr, torch and the
+#             nvidia-*/triton wheels) is Linux/CUDA-oriented.
+#
+# ── INSTALL (from the repo root) ─────────────────────────────────────────────
+#     python3.10 -m venv .venv
+#     source .venv/bin/activate
+#     pip install --no-deps -r requirements.txt      # <-- note: --no-deps
+#
+# Why --no-deps: this is the full transitive closure with exact pins, so no
+# resolution is needed. Two upstream packages declare over-strict bounds that
+# this environment intentionally overrides and which work fine at runtime:
+#   - marker-pdf 1.10.2 declares openai<2.0.0   (we run openai 2.44.0)
+#   - instructor 1.15.4 declares jiter<0.15     (we run jiter 0.16.0)
+# A normal `pip install -r` would try to re-resolve and either fail
+# (ResolutionImpossible) or silently downgrade openai to 1.x (breaking the
+# parser). --no-deps installs exactly these versions and skips that. `pip check`
+# will report those two as warnings — that is expected and safe.
+# =============================================================================
 aiohappyeyeballs==2.6.2
 aiohttp==3.14.1
 aiosignal==1.4.0
@@ -43,6 +69,7 @@ identify==2.6.19
 idna==3.18
 iniconfig==2.3.0
 instructor==1.15.4
+isodate==0.7.2
 Jinja2==3.1.6
 jiter==0.16.0
 joblib==1.5.3
@@ -55,6 +82,7 @@ MarkupSafe==3.0.3
 mdurl==0.1.2
 mpmath==1.3.0
 multidict==6.7.1
+neo4j==6.2.0
 networkx==3.4.2
 nodeenv==1.10.0
 numpy==2.2.6
@@ -78,6 +106,7 @@ openai==2.44.0
 opencv-python-headless==4.11.0.86
 packaging==26.2
 pdftext==0.6.3
+pgvector==0.4.2
 pillow==10.4.0
 platformdirs==4.10.0
 pluggy==1.6.0
@@ -95,18 +124,22 @@ Pygments==2.20.0
 pymupdf==1.28.0
 pymupdf-layout==1.28.0
 pymupdf4llm==1.28.0
+pyparsing==3.3.2
 pypdfium2==4.30.0
 pytest==9.1.1
 python-discovery==1.4.2
 python-dotenv==1.2.2
+pytz==2026.2
 PyYAML==6.0.3
 RapidFuzz==3.14.5
+rdflib==7.6.0
 regex==2024.11.6
 requests==2.34.2
 rich==14.3.4
 safetensors==0.8.0
 scikit-learn==1.7.2
 scipy==1.15.3
+sentence-transformers==5.6.0
 shellingham==1.5.4
 six==1.17.0
 sniffio==1.3.1
