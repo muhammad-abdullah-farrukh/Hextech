@@ -85,8 +85,8 @@ import json, re, sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from stages.llm import call_llm
-from config import OUTPUTS_DIR, SCHEMA_EXPANSION
+from stages.llm import call_llm_answer
+from config import OUTPUTS_DIR, SCHEMA_EXPANSION, LLM_TOKENS_DEFINE, LLM_TOKENS_RETRY
 
 NEW_PROP_PROMPT = """\
 Use the relations (properties) and their usage comments to
@@ -272,7 +272,13 @@ def _new_prop_turtle(extracted: dict) -> str:
         f"[Stage 7/8]   generating Turtle for new property '{extracted['property']}' …",
         flush=True,
     )
-    raw = call_llm(prompt, max_tokens=300)
+    raw, truncated = call_llm_answer(
+        prompt, LLM_TOKENS_DEFINE, retry_budget=LLM_TOKENS_RETRY
+    )
+    if truncated:
+        print(f"[Stage 7/8]   ⚠ Turtle generation truncated for "
+              f"'{extracted['property']}' (reasoning exceeded budget) — the block "
+              f"may be incomplete and fail validation", flush=True)
     print(f"[Stage 7/8]   ✓ got {len(raw)} chars back", flush=True)
     raw = raw.replace("```turtle", "").replace("```", "").strip()
 
@@ -298,6 +304,7 @@ def build_ontology(match_results: list[dict]) -> tuple[str, dict[str, str]]:
     seen_canon_blocks:  set[str] = set()   # dedup canon-store reuses by exact text
     seen_new_props: dict[str, str] = {}    # lower(label) → turtle block
     new_prop_map:   dict[str, str] = {}    # label → turtle block (for EDC)
+    attempted_new_props: set[str] = set()  # lower(label) generated once (valid OR not)
 
     for item in match_results:
         extracted = item["extracted"]
@@ -329,9 +336,14 @@ def build_ontology(match_results: list[dict]) -> tuple[str, dict[str, str]]:
                 continue  # target-schema-constrained mode: discard
 
             key = extracted["property"].strip().lower()
-            if key in seen_new_props:
-                continue  # duplicate property name — reuse already-generated block
+            if key in seen_new_props or key in attempted_new_props:
+                # Already generated (valid) OR already tried once and dropped as
+                # invalid. Either way, do NOT regenerate per occurrence — that is
+                # what made a 34-skill résumé run 34 identical hasSkill Turtle
+                # generations (each one failing validation, none ever cached).
+                continue
 
+            attempted_new_props.add(key)  # one generation attempt per unique property
             block = _new_prop_turtle(extracted)
             valid, diag = _validate_turtle_block(block, extracted["property"])
             if not valid:
