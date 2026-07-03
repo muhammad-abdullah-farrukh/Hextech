@@ -1,22 +1,92 @@
 [
   {
-    "question": "What algorithm was used to engineer the 1v1 Pursuit-Evasion Simulation?",
-    "answer": "The algorithm used to engineer the 1v1 Pursuit-Evasion Simulation was Proximal Policy Optimization (PPO).",
-    "subject": "Project - 1v1 Pursuit-Evasion Simulation"
+    "question": "What tools were used to develop the multi-agent pursuit-evasion simulation?",
+    "answer": "The tools used to develop the multi-agent pursuit-evasion simulation were JSBSim, OpenAI Gym, Python, and PyTorch.",
+    "subject": "Multi-agent Pursuit-Evasion Simulation"
   },
   {
-    "question": "What was the purpose of the 1v1 Pursuit-Evasion Simulation?",
-    "answer": "The purpose of the 1v1 Pursuit-Evasion Simulation was to engineer a simulation using Proximal Policy Optimization (PPO) algorithms to achieve optimal positioning strategies in a one-on-one pursuit and evasion scenario.",
-    "subject": "Project - 1v1 Pursuit-Evasion Simulation"
+    "question": "What framework was used for policy optimization in the simulation?",
+    "answer": "The framework used for policy optimization in the simulation was PyTorch.",
+    "subject": "Multi-agent Pursuit-Evasion Simulation"
   },
   {
-    "question": "What is the purpose of the Multi-Agent 2v1 Coordination Framework?",
-    "answer": "The purpose of the Multi-Agent 2v1 Coordination Framework is to develop a system that enables multiple agents to coordinate and exhibit team-based swarming behavior in a 2v1 scenario.",
-    "subject": "Project - Multi-Agent 2v1 Coordination Framework"
+    "question": "What programming language was used to develop the reinforcement learning suite?",
+    "answer": "The reinforcement learning suite was developed using Python.",
+    "subject": "Reinforcement Learning Suite"
   },
   {
-    "question": "What is the current status of the Multi-Agent 2v1 Coordination Framework?",
-    "answer": "The Multi-Agent 2v1 Coordination Framework is currently in progress, indicating that it is still under development and has not yet been completed.",
-    "subject": "Project - Multi-Agent 2v1 Coordination Framework"
+    "question": "What concepts were implemented in the reinforcement learning suite?",
+    "answer": "The reinforcement learning suite implemented the following concepts:\n\n1. **DQN (Deep Q-Network) concepts**\n2. **Experience Replay**\n3. **Target Networks**\n4. **Epsilon-Greedy strategies**\n\nThese were developed using Python.",
+    "subject": "Reinforcement Learning Suite"
+  },
+  {
+    "question": "What strategies were used in the reinforcement learning suite?",
+    "answer": "The reinforcement learning suite implemented several key strategies based on Deep Q-Network (DQN) concepts. These strategies include:\n\n1. **Experience Replay**: This technique involves storing past experiences in a buffer and using them to train the model, which helps in reducing the correlation between consecutive samples and enhances learning stability.\n\n2. **Target Networks**: To stabilize training, a separate target network is used, which is periodically updated from the main network. This prevents the target Q-values from changing too quickly, thus improving training stability.\n\n3. **Epsilon-Greedy Strategy**: This exploration strategy balances between exploration and exploitation. The agent takes a random action with probability epsilon to explore new options and the action with the highest expected reward otherwise.\n\nThese strategies collectively contribute to the effective implementation of the reinforcement learning suite.",
+    "subject": "Reinforcement Learning Suite"
+  },
+  {
+    "question": "What software was used to design the analog and acoustic wireless communication systems?",
+    "answer": "The software used to design the analog and acoustic wireless communication systems was MATLAB.",
+    "subject": "Analog and Acoustic Wireless Communication Systems"
+  },
+  {
+    "question": "What concepts were used for ADC/DAC interfacing in the systems?",
+    "answer": "The concepts used for ADC/DAC interfacing in the systems were ADC/DAC interfacing, FSK modulation, and carrier synchronization. These were implemented in the analog and acoustic wireless communication systems designed using MATLAB.",
+    "subject": "Analog and Acoustic Wireless Communication Systems"
+  },
+  {
+    "question": "What type of modulation was used in the systems?",
+    "answer": "The type of modulation used in the systems is Frequency-Shift Keying (FSK).",
+    "subject": "Analog and Acoustic Wireless Communication Systems"
+  },
+  {
+    "question": "What was used for carrier synchronization in the systems?",
+    "answer": "The carrier synchronization in the systems was implemented using MATLAB.",
+    "subject": "Analog and Acoustic Wireless Communication Systems"
+  },
+  {
+    "question": "What machine learning library was used to train and deploy the predictive optimization models?",
+    "answer": "The machine learning library used to train and deploy the predictive optimization models was Scikit-learn.",
+    "subject": "Predictive Optimization Models"
+  },
+  {
+    "question": "What learning paradigm was used in the predictive optimization models?",
+    "answer": "The learning paradigm used in the predictive optimization models is Supervised Learning. This is evident from the passage which states that the models were trained using Scikit-learn with Supervised Learning fundamentals.",
+    "subject": "Predictive Optimization Models"
+  },
+  {
+    "question": "What tool was used for carbon footprint tracking in the models?",
+    "answer": "The tool used for carbon footprint tracking in the models was **CodeCarbon**.",
+    "subject": "Predictive Optimization Models"
+  },
+  {
+    "question": "What software tools were used to design the CubeSat Power Control Units?",
+    "answer": "The software tools used to design the CubeSat Power Control Units were MATLAB/Simulink and FPGA-based hardware.",
+    "subject": "CubeSat Power Control Units"
+  },
+  {
+    "question": "What type of hardware was used in the design of the CubeSat Power Control Units?",
+    "answer": "The hardware used in the design of the CubeSat Power Control Units was FPGA-based hardware.",
+    "subject": "CubeSat Power Control Units"
+  },
+  {
+    "question": "What concepts were applied in the design of the CubeSat Power Control Units?",
+    "answer": "The design of the CubeSat Power Control Units utilized MATLAB/Simulink for simulation and design purposes, along with FPGA-based hardware for implementation. The key concepts applied were centered around power management, encompassing efficient power distribution, battery management, and power-saving strategies.",
+    "subject": "CubeSat Power Control Units"
+  },
+  {
+    "question": "What libraries were used to architect the complex reward-shaping functions?",
+    "answer": "The libraries used to architect the complex reward-shaping functions were NumPy and Matplotlib.",
+    "subject": "Complex Reward-Shaping Functions"
+  },
+  {
+    "question": "What tools were used for real-time visual analytics in the functions?",
+    "answer": "The tools used for real-time visual analytics in the functions are NumPy and Matplotlib.",
+    "subject": "Complex Reward-Shaping Functions"
+  },
+  {
+    "question": "What metrics were used to assess training convergence in the functions?",
+    "answer": "The passage mentions that NumPy and Matplotlib were used for real-time visual analytics and training convergence metrics in the functions. However, it does not specify the exact metrics used to assess training convergence.",
+    "subject": "Complex Reward-Shaping Functions"
   }
 ]

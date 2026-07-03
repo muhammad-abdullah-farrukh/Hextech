@@ -1,18 +1,74 @@
 [
   {
-    "subject": "Project - 1v1 Pursuit-Evasion Simulation",
-    "question": "What algorithm was used to engineer the 1v1 Pursuit-Evasion Simulation?"
+    "subject": "Multi-agent Pursuit-Evasion Simulation",
+    "question": "What tools were used to develop the multi-agent pursuit-evasion simulation?"
   },
   {
-    "subject": "Project - 1v1 Pursuit-Evasion Simulation",
-    "question": "What was the purpose of the 1v1 Pursuit-Evasion Simulation?"
+    "subject": "Multi-agent Pursuit-Evasion Simulation",
+    "question": "What framework was used for policy optimization in the simulation?"
   },
   {
-    "subject": "Project - Multi-Agent 2v1 Coordination Framework",
-    "question": "What is the purpose of the Multi-Agent 2v1 Coordination Framework?"
+    "subject": "Reinforcement Learning Suite",
+    "question": "What programming language was used to develop the reinforcement learning suite?"
   },
   {
-    "subject": "Project - Multi-Agent 2v1 Coordination Framework",
-    "question": "What is the current status of the Multi-Agent 2v1 Coordination Framework?"
+    "subject": "Reinforcement Learning Suite",
+    "question": "What concepts were implemented in the reinforcement learning suite?"
+  },
+  {
+    "subject": "Reinforcement Learning Suite",
+    "question": "What strategies were used in the reinforcement learning suite?"
+  },
+  {
+    "subject": "Analog and Acoustic Wireless Communication Systems",
+    "question": "What software was used to design the analog and acoustic wireless communication systems?"
+  },
+  {
+    "subject": "Analog and Acoustic Wireless Communication Systems",
+    "question": "What concepts were used for ADC/DAC interfacing in the systems?"
+  },
+  {
+    "subject": "Analog and Acoustic Wireless Communication Systems",
+    "question": "What type of modulation was used in the systems?"
+  },
+  {
+    "subject": "Analog and Acoustic Wireless Communication Systems",
+    "question": "What was used for carrier synchronization in the systems?"
+  },
+  {
+    "subject": "Predictive Optimization Models",
+    "question": "What machine learning library was used to train and deploy the predictive optimization models?"
+  },
+  {
+    "subject": "Predictive Optimization Models",
+    "question": "What learning paradigm was used in the predictive optimization models?"
+  },
+  {
+    "subject": "Predictive Optimization Models",
+    "question": "What tool was used for carbon footprint tracking in the models?"
+  },
+  {
+    "subject": "CubeSat Power Control Units",
+    "question": "What software tools were used to design the CubeSat Power Control Units?"
+  },
+  {
+    "subject": "CubeSat Power Control Units",
+    "question": "What type of hardware was used in the design of the CubeSat Power Control Units?"
+  },
+  {
+    "subject": "CubeSat Power Control Units",
+    "question": "What concepts were applied in the design of the CubeSat Power Control Units?"
+  },
+  {
+    "subject": "Complex Reward-Shaping Functions",
+    "question": "What libraries were used to architect the complex reward-shaping functions?"
+  },
+  {
+    "subject": "Complex Reward-Shaping Functions",
+    "question": "What tools were used for real-time visual analytics in the functions?"
+  },
+  {
+    "subject": "Complex Reward-Shaping Functions",
+    "question": "What metrics were used to assess training convergence in the functions?"
   }
 ]

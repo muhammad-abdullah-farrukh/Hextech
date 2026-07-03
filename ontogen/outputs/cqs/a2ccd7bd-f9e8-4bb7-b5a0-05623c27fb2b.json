@@ -1,66 +1,70 @@
 [
   {
     "subject": "AutoPEFT B",
-    "question": "What techniques were used to architect the autonomous, hardware-aware Parameter-Efficient Fine-Tuning (PEFT) system for Qwen2.5 7B LLMs?"
+    "question": "What is the purpose of the AutoPEFT B system?"
   },
   {
     "subject": "AutoPEFT B",
-    "question": "What type of LLM was optimized using the AutoPEFT B system?"
+    "question": "Which techniques were used to develop the AutoPEFT B system?"
   },
   {
     "subject": "AutoPEFT B",
-    "question": "What neural network components were engineered to predict validation loss and peak VRAM?"
+    "question": "What improvements did the AutoPEFT B system achieve?"
   },
   {
     "subject": "AutoPEFT B",
-    "question": "What percentage reduction in VRAM was achieved with the AutoPEFT B system?"
+    "question": "What components were used in the dual-headed MLP and GRU surrogate neural network?"
   },
   {
     "subject": "AutoPEFT B",
-    "question": "What percentage storage compression was achieved while maintaining model accuracy?"
+    "question": "What tools were used in the end-to-end MLOps stack?"
   },
   {
     "subject": "AutoPEFT B",
-    "question": "What MLOps stack components were deployed for comprehensive monitoring and scalable operations?"
+    "question": "What were the performance metrics achieved by the AutoPEFT B system?"
   },
   {
     "subject": "CryptoSentinel",
-    "question": "What machine learning pipeline was built for short-term cryptocurrency price prediction?"
+    "question": "What is the purpose of the CryptoSentinel project?"
   },
   {
     "subject": "CryptoSentinel",
-    "question": "What CI/CD tools were integrated with Hopsworks for feature storage and training?"
+    "question": "Which tools were used to implement the CI/CD pipeline for CryptoSentinel?"
   },
   {
     "subject": "CryptoSentinel",
-    "question": "What metrics were used to evaluate model performance in CryptoSentinel?"
+    "question": "What metrics were used to evaluate the performance of the CryptoSentinel model?"
   },
   {
     "subject": "Real-Time ASL Detection & Translation System",
-    "question": "What model architecture was used for real-time ASL detection?"
+    "question": "What is the purpose of the Real-Time ASL Detection & Translation System?"
   },
   {
     "subject": "Real-Time ASL Detection & Translation System",
-    "question": "What data pipeline components were integrated for ASL detection?"
+    "question": "Which model architecture was used for the ASL translation system?"
   },
   {
     "subject": "Real-Time ASL Detection & Translation System",
-    "question": "What method was used to process video streams for real-time ASL predictions?"
+    "question": "What data pipeline components were used in the ASL translation system?"
+  },
+  {
+    "subject": "Real-Time ASL Detection & Translation System",
+    "question": "How was the ASL translation system able to process video streams in real-time?"
   },
   {
     "subject": "Algorithmic Optimization for Frequent Itemset Mining",
-    "question": "How many FIM algorithms were engineered and benchmarked?"
+    "question": "What is the purpose of the Algorithmic Optimization for Frequent Itemset Mining project?"
   },
   {
     "subject": "Algorithmic Optimization for Frequent Itemset Mining",
-    "question": "What speedup was achieved with the hardware-native bitset Apriori variant?"
+    "question": "Which FIM algorithms were engineered and benchmarked?"
   },
   {
     "subject": "Algorithmic Optimization for Frequent Itemset Mining",
-    "question": "What reinforcement learning heuristic was developed for frequent itemset mining?"
+    "question": "What performance improvements were achieved with the hardware-native bitset Apriori variant?"
   },
   {
     "subject": "Algorithmic Optimization for Frequent Itemset Mining",
-    "question": "What percentage of frequent itemsets were recovered using the GIM-RL heuristic?"
+    "question": "What is the GIM-RL heuristic and how does it work?"
   }
 ]

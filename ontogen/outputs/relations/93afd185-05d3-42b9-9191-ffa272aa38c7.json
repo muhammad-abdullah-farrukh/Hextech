@@ -1,75 +1,43 @@
 [
   {
-    "property": "primary technology used",
-    "description": "The technology primarily utilized by a project."
+    "property": "primary purpose",
+    "description": "The main goal or function of an entity."
   },
   {
-    "property": "type of workspace",
-    "description": "The type of workspace created by a project."
+    "property": "pipeline",
+    "description": "The specific system or process used in a project."
   },
   {
-    "property": "pipeline used",
-    "description": "The pipeline utilized in a project."
+    "property": "converts",
+    "description": "The method or process used to transform one form into another."
   },
   {
-    "property": "converts into",
-    "description": "The process of converting one form into another."
+    "property": "technology",
+    "description": "The tool or method used for a specific function."
   },
   {
-    "property": "maps to",
-    "description": "The method of mapping assets to a user's environment."
+    "property": "main focus",
+    "description": "The central objective or emphasis of a project."
   },
   {
-    "property": "purpose",
-    "description": "The objective or goal of a project."
+    "property": "integrated tools",
+    "description": "The specific software or tools used in a system."
   },
   {
-    "property": "containerization tool",
-    "description": "The tool used for containerization in a project."
-  },
-  {
-    "property": "AWS service integrated",
-    "description": "The AWS service integrated into a project."
-  },
-  {
-    "property": "application type",
-    "description": "The type of application supported by a project."
-  },
-  {
-    "property": "AWS compute service",
-    "description": "The AWS compute service used in a project."
-  },
-  {
-    "property": "main feature",
-    "description": "The primary feature of a project."
+    "property": "experience type",
+    "description": "The nature or kind of experience provided."
   },
   {
     "property": "number of visualizations",
-    "description": "The count of visualizations included in a project."
+    "description": "The count of visual elements in a project."
   },
   {
-    "property": "3D canvas library",
-    "description": "The library used for the 3D canvas in a project."
+    "property": "primary function",
+    "description": "The main operation or role of a system."
   },
   {
-    "property": "driven by",
-    "description": "The mechanism or factor driving a process or system."
-  },
-  {
-    "property": "main function",
-    "description": "The primary function or purpose of a system or project."
-  },
-  {
-    "property": "FX execution platform",
-    "description": "The platform used for real-time foreign exchange execution."
-  },
-  {
-    "property": "data streams used",
-    "description": "The type of data streams utilized in a system."
-  },
-  {
-    "property": "inference framework",
-    "description": "The framework used for inference in a system."
+    "property": "integrated platform",
+    "description": "The connected system or software used for a specific purpose."
   },
   {
     "property": "goal",
@@ -77,6 +45,6 @@
   },
   {
     "property": "dataset type",
-    "description": "The type of dataset used in a project."
+    "description": "The nature or category of data used in a project."
   }
 ]

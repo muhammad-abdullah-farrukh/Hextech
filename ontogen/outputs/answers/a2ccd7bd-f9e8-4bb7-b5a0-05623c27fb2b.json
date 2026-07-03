@@ -1,82 +1,87 @@
 [
   {
-    "question": "What techniques were used to architect the autonomous, hardware-aware Parameter-Efficient Fine-Tuning (PEFT) system for Qwen2.5 7B LLMs?",
-    "answer": "The techniques used to architect the autonomous, hardware-aware Parameter-Efficient Fine-Tuning (PEFT) system for Qwen2.5 7B LLMs include:\n\n1. **QLoRA**: A method for efficient fine-tuning of large language models.\n2. **Bayesian Optimization**: An optimization technique used for hyperparameter tuning.\n3. **Dual-headed MLP and GRU Surrogate Neural Network**: This model was used to predict validation loss and peak VRAM, aiding in resource optimization.\n\nThese techniques collectively enabled efficient and hardware-aware optimization of the model.",
+    "question": "What is the purpose of the AutoPEFT B system?",
+    "answer": "The purpose of the AutoPEFT B system is to optimize large language models (LLMs) efficiently by considering hardware constraints. It uses techniques like QLoRA and Bayesian Optimization to enhance model efficiency, ensuring that models run effectively on available hardware with minimal resource usage. This optimization leads to significant reductions in VRAM and storage while maintaining high performance, making the system cost-efficient.",
     "subject": "AutoPEFT B"
   },
   {
-    "question": "What type of LLM was optimized using the AutoPEFT B system?",
-    "answer": "The AutoPEFT B system was used to optimize the Qwen2.5 7B LLM.",
+    "question": "Which techniques were used to develop the AutoPEFT B system?",
+    "answer": "The techniques used to develop the AutoPEFT B system include:\n\n1. **QLoRA**: A method for parameter-efficient fine-tuning.\n2. **Bayesian Optimization**: Used for hyperparameter tuning.\n3. **Dual-headed MLP and GRU**: A surrogate neural network to predict validation loss and peak VRAM.\n4. **DVC**: For versioned data pipelines.\n5. **FastAPI**: Used for telemetry.\n6. **React Dashboard**: For real-time monitoring.\n\nThese techniques were integral to the development and deployment of the AutoPEFT B system, focusing on optimization, prediction, and monitoring.",
     "subject": "AutoPEFT B"
   },
   {
-    "question": "What neural network components were engineered to predict validation loss and peak VRAM?",
-    "answer": "The neural network components engineered to predict validation loss and peak VRAM were a dual-headed MLP (Multi-Layer Perceptron) and GRU (Gated Recurrent Unit). This combination allowed for accurate predictions by leveraging the strengths of both network types, with MLP handling non-linear relationships and GRU processing sequential data. \n\n**Answer:** The neural network components were a dual-headed MLP and GRU.",
+    "question": "What improvements did the AutoPEFT B system achieve?",
+    "answer": "The AutoPEFT B system achieved several key improvements:\n\n1. **VRAM Reduction**: A 74.1% reduction in peak VRAM usage, making the system more efficient on consumer-grade GPUs.\n2. **Storage Compression**: A 66.2% reduction in storage requirements, optimizing resource utilization.\n3. **Maintained Accuracy**: The system maintained an 81.0% MMLU accuracy, ensuring that performance was not compromised despite the optimizations.\n4. **Efficient Hyperparameter Optimization**: By using a dual-headed MLP and GRU surrogate model, the system streamlined hyperparameter tuning, reducing resource overhead.\n5. **Scalable and Monitorable System**: The deployment of an MLOps stack with DVC, FastAPI, and a React dashboard enabled comprehensive monitoring and scalable operations, enhancing overall system manageability.\n\nThese improvements collectively optimized cost-efficiency without sacrificing model performance.",
     "subject": "AutoPEFT B"
   },
   {
-    "question": "What percentage reduction in VRAM was achieved with the AutoPEFT B system?",
-    "answer": "The AutoPEFT B system achieved a 74.1% reduction in VRAM usage. \n\nAnswer: The AutoPEFT B system achieved a 74.1% reduction in VRAM.",
+    "question": "What components were used in the dual-headed MLP and GRU surrogate neural network?",
+    "answer": "The dual-headed MLP and GRU surrogate neural network consists of two components: a Multi-Layer Perceptron (MLP) and a Gated Recurrent Unit (GRU). The MLP handles non-sequential data, while the GRU manages sequential data, enabling accurate predictions of validation loss and peak VRAM usage.",
     "subject": "AutoPEFT B"
   },
   {
-    "question": "What percentage storage compression was achieved while maintaining model accuracy?",
-    "answer": "The storage compression achieved while maintaining model accuracy was 66.2%.",
+    "question": "What tools were used in the end-to-end MLOps stack?",
+    "answer": "The tools used in the end-to-end MLOps stack for AutoPEFT B are:\n\n1. **DVC (Data Version Control)**: For managing versioned data pipelines.\n2. **FastAPI**: Used for telemetry, enabling monitoring and data collection.\n3. **React Dashboard**: Provides real-time monitoring and visualization of the system's operations.\n\nThese tools collectively support a robust and scalable MLOps infrastructure, facilitating comprehensive monitoring and efficient operations.",
     "subject": "AutoPEFT B"
   },
   {
-    "question": "What MLOps stack components were deployed for comprehensive monitoring and scalable operations?",
-    "answer": "The MLOps stack components deployed for comprehensive monitoring and scalable operations in the AutoPEFT B project include:\n\n1. **DVC versioned data pipelines**: Ensures data version control and reproducibility.\n2. **FastAPI telemetry**: Manages API monitoring and data collection.\n3. **Real-time React dashboard**: Provides a visual interface for real-time monitoring and system oversight.\n\nThese components together enable effective monitoring and scalability for the project.",
+    "question": "What were the performance metrics achieved by the AutoPEFT B system?",
+    "answer": "The AutoPEFT B system achieved the following performance metrics:\n\n- **VRAM Reduction**: 74.1%\n- **Storage Compression**: 66.2%\n- **MMLU Accuracy**: 81.0%\n\nThese metrics highlight the system's efficiency in resource utilization and model performance.",
     "subject": "AutoPEFT B"
   },
   {
-    "question": "What machine learning pipeline was built for short-term cryptocurrency price prediction?",
-    "answer": "The machine learning pipeline built for short-term cryptocurrency price prediction is **CryptoSentinel**.",
+    "question": "What is the purpose of the CryptoSentinel project?",
+    "answer": "The purpose of the CryptoSentinel project is to predict short-term cryptocurrency prices using an automated machine learning pipeline. The system automates data ingestion, feature storage, model training, evaluation, and deployment, utilizing tools like GitHub Actions, Hopsworks, and Hugging Face. It employs metrics such as RMSE and MAE to evaluate model performance, focusing on accurate and reproducible price predictions.",
     "subject": "CryptoSentinel"
   },
   {
-    "question": "What CI/CD tools were integrated with Hopsworks for feature storage and training?",
-    "answer": "The CI/CD tool integrated with Hopsworks for feature storage and training is GitHub Actions. This integration was part of the CryptoSentinel project, where GitHub Actions was used to implement CI/CD, working alongside Hopsworks as the feature store and training layer.\n\n**Answer:** GitHub Actions were integrated with Hopsworks for feature storage and training.",
+    "question": "Which tools were used to implement the CI/CD pipeline for CryptoSentinel?",
+    "answer": "The tools used to implement the CI/CD pipeline for CryptoSentinel were GitHub Actions and Hopsworks. GitHub Actions was used for automating the CI/CD process, while Hopsworks served as the feature store and training layer, integrating seamlessly into the pipeline.",
     "subject": "CryptoSentinel"
   },
   {
-    "question": "What metrics were used to evaluate model performance in CryptoSentinel?",
-    "answer": "The metrics used to evaluate model performance in CryptoSentinel were Root Mean Square Error (RMSE) and Mean Absolute Error (MAE). These metrics are suitable for assessing the accuracy of regression models, which is appropriate given the task of predicting cryptocurrency prices.",
+    "question": "What metrics were used to evaluate the performance of the CryptoSentinel model?",
+    "answer": "The CryptoSentinel model was evaluated using Root Mean Square Error (RMSE) and Mean Absolute Error (MAE) as performance metrics. These metrics are suitable for regression tasks, assessing the accuracy of price predictions by measuring the difference between predicted and actual values.",
     "subject": "CryptoSentinel"
   },
   {
-    "question": "What model architecture was used for real-time ASL detection?",
-    "answer": "The model architecture used for real-time ASL detection was a custom Faster R-CNN with a ResNet-50 FPN backbone.",
+    "question": "What is the purpose of the Real-Time ASL Detection & Translation System?",
+    "answer": "The purpose of the Real-Time ASL Detection & Translation System is to provide a seamless and accurate translation of American Sign Language (ASL) gestures into text in real-time. This system uses a custom Faster R-CNN model with a ResNet-50 FPN backbone to detect ASL gestures from live video input, specifically base64-encoded streams, and convert them into text. The goal is to facilitate communication for individuals who are deaf or hard of hearing by enabling real-time transcription of ASL, thereby enhancing accessibility.",
     "subject": "Real-Time ASL Detection & Translation System"
   },
   {
-    "question": "What data pipeline components were integrated for ASL detection?",
-    "answer": "The data pipeline components integrated for the ASL detection system include:\n\n1. **Pascal VOC Annotations**: A dataset used for object detection, providing training data.\n2. **MediaPipe Hands**: Utilized for hand detection and tracking, generating precise bounding boxes.\n3. **Base64-encoded Video Streams**: Processed for real-time input, involving decoding and handling video frames.\n\nThese components collectively support both training the model and enabling real-time ASL predictions.",
+    "question": "Which model architecture was used for the ASL translation system?",
+    "answer": "The model architecture used for the ASL translation system was a custom Faster R-CNN with a ResNet-50 FPN backbone.",
     "subject": "Real-Time ASL Detection & Translation System"
   },
   {
-    "question": "What method was used to process video streams for real-time ASL predictions?",
-    "answer": "The method used to process video streams for real-time ASL predictions involved handling base64-encoded video streams. The system efficiently processed these encoded streams, likely decoding them and using a custom Faster R-CNN model with MediaPipe Hands to enable real-time detection and translation of ASL signs.",
+    "question": "What data pipeline components were used in the ASL translation system?",
+    "answer": "The data pipeline components used in the ASL translation system include:\n\n1. **Integration of Pascal VOC Annotations**: These annotations were used to provide labeled data for training the object detection model.\n\n2. **MediaPipe Hands for Bounding Box Generation**: This component was utilized to detect and track hand gestures, generating precise bounding boxes for accurate ASL detection.\n\n3. **Base64-encoded Video Stream Processing**: The system processes video streams in real-time, decoding base64-encoded data to enable seamless live ASL predictions.\n\nThese components work together to ensure accurate and efficient real-time ASL detection and translation.",
     "subject": "Real-Time ASL Detection & Translation System"
   },
   {
-    "question": "How many FIM algorithms were engineered and benchmarked?",
-    "answer": "The number of FIM algorithms engineered and benchmarked is four.\n\n**Answer:** Four FIM algorithms were engineered and benchmarked.",
+    "question": "How was the ASL translation system able to process video streams in real-time?",
+    "answer": "The ASL translation system achieves real-time processing through a combination of advanced computer vision techniques and efficient data handling. It employs a custom Faster R-CNN model with a ResNet-50 FPN backbone, which is optimized for detecting objects at various scales, crucial for capturing diverse hand gestures. MediaPipe Hands is integrated to ensure precise and efficient hand tracking, enhancing the accuracy of gesture detection. Additionally, the system efficiently processes base64-encoded video streams, likely leveraging optimized decoding and potential GPU acceleration via PyTorch, enabling seamless real-time transcription. These components work together to ensure low latency and high-speed processing, making real-time ASL translation possible.",
+    "subject": "Real-Time ASL Detection & Translation System"
+  },
+  {
+    "question": "What is the purpose of the Algorithmic Optimization for Frequent Itemset Mining project?",
+    "answer": "The purpose of the Algorithmic Optimization for Frequent Itemset Mining project was to enhance the efficiency and performance of frequent itemset mining algorithms. This was achieved by evaluating and optimizing four FIM algorithms to improve their time complexity and memory usage on large datasets. The project introduced a hardware-native bitset Apriori variant for faster processing and a Reinforcement Learning heuristic (GIM-RL) to efficiently recover frequent itemsets with reduced costs, ensuring both speed and cost-effectiveness.",
     "subject": "Algorithmic Optimization for Frequent Itemset Mining"
   },
   {
-    "question": "What speedup was achieved with the hardware-native bitset Apriori variant?",
-    "answer": "The hardware-native bitset Apriori variant achieved a speedup of 5 to 10 times over standard Python set intersections.",
+    "question": "Which FIM algorithms were engineered and benchmarked?",
+    "answer": "The passage indicates that four FIM algorithms were engineered and benchmarked. Among these, two are specifically mentioned: a hardware-native bitset Apriori variant and GIM-RL, a Reinforcement Learning heuristic. The other two algorithms are not detailed in the provided text.",
     "subject": "Algorithmic Optimization for Frequent Itemset Mining"
   },
   {
-    "question": "What reinforcement learning heuristic was developed for frequent itemset mining?",
-    "answer": "The reinforcement learning heuristic developed for frequent itemset mining is **GIM-RL**. This heuristic is based on a Markov Decision Process with epsilon-greedy exploration, enabling the recovery of up to 95% of frequent itemsets while significantly reducing execution costs.",
+    "question": "What performance improvements were achieved with the hardware-native bitset Apriori variant?",
+    "answer": "The hardware-native bitset Apriori variant achieved a performance improvement of a 5x to 10x speedup over standard Python set intersections.",
     "subject": "Algorithmic Optimization for Frequent Itemset Mining"
   },
   {
-    "question": "What percentage of frequent itemsets were recovered using the GIM-RL heuristic?",
-    "answer": "The GIM-RL heuristic recovered up to 95% of frequent itemsets.",
+    "question": "What is the GIM-RL heuristic and how does it work?",
+    "answer": "The GIM-RL heuristic is a Reinforcement Learning-based approach designed for Frequent Itemset Mining (FIM). It operates within a Markov Decision Process (MDP) framework, where each state represents a decision point in the mining process. The algorithm uses an epsilon-greedy strategy to balance exploration (random actions to discover new item combinations) and exploitation (choosing the best-known actions to find frequent itemsets). This method efficiently recovers up to 95% of frequent itemsets while significantly reducing execution costs, making it an effective and cost-efficient solution for FIM.",
     "subject": "Algorithmic Optimization for Frequent Itemset Mining"
   }
 ]

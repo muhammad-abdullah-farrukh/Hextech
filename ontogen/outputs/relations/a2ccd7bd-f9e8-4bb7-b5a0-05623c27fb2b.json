@@ -1,66 +1,50 @@
 [
   {
-    "property": "technique used",
-    "description": "The specific techniques applied to architect the system."
+    "property": "purpose",
+    "description": "The intended goal or function of a system or project."
   },
   {
-    "property": "optimized LLM",
-    "description": "The type of LLM that was optimized using the system."
+    "property": "techniques used",
+    "description": "The methods or approaches applied in developing a system."
   },
   {
-    "property": "neural network components",
-    "description": "The specific neural network components engineered."
+    "property": "improvements achieved",
+    "description": "The enhancements or benefits resulting from a system."
   },
   {
-    "property": "VRAM reduction",
-    "description": "The percentage reduction in VRAM achieved."
+    "property": "components used",
+    "description": "The parts or elements of a neural network or system."
   },
   {
-    "property": "storage compression",
-    "description": "The percentage storage compression achieved."
+    "property": "tools used",
+    "description": "The software or tools employed in a system or pipeline."
   },
   {
-    "property": "MLOps components",
-    "description": "The components of the MLOps stack deployed."
-  },
-  {
-    "property": "ML pipeline",
-    "description": "The type of machine learning pipeline built."
-  },
-  {
-    "property": "CI/CD tools",
-    "description": "The CI/CD tools integrated with Hopsworks."
+    "property": "performance metrics",
+    "description": "The measurable outcomes achieved by a system."
   },
   {
     "property": "evaluation metrics",
-    "description": "The metrics used to evaluate model performance."
+    "description": "The measures used to assess model performance."
   },
   {
     "property": "model architecture",
-    "description": "The architecture used for real-time ASL detection."
+    "description": "The structure or design of a model."
   },
   {
-    "property": "data pipeline components",
-    "description": "The components integrated for ASL detection."
+    "property": "processing method",
+    "description": "The technique used for real-time processing."
   },
   {
-    "property": "video stream processing method",
-    "description": "The method used to process video streams."
+    "property": "algorithms engineered",
+    "description": "The specific algorithms developed or implemented."
   },
   {
-    "property": "number of FIM algorithms",
-    "description": "The number of FIM algorithms engineered and benchmarked."
+    "property": "performance improvements",
+    "description": "The gains or enhancements achieved."
   },
   {
-    "property": "speedup achieved",
-    "description": "The factor by which execution was sped up."
-  },
-  {
-    "property": "reinforcement learning heuristic",
-    "description": "The heuristic developed for frequent itemset mining."
-  },
-  {
-    "property": "frequent itemsets recovered",
-    "description": "The percentage of frequent itemsets recovered using the heuristic."
+    "property": "heuristic description",
+    "description": "The explanation of a heuristic method and its mechanism."
   }
 ]

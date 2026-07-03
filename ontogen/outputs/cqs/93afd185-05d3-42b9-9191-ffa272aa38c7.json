@@ -1,11 +1,7 @@
 [
   {
     "subject": "Project - TeseraVR",
-    "question": "What is the primary technology used in TeseraVR?"
-  },
-  {
-    "subject": "Project - TeseraVR",
-    "question": "What type of workspace does TeseraVR create?"
+    "question": "What is the primary purpose of TeseraVR?"
   },
   {
     "subject": "Project - TeseraVR",
@@ -13,63 +9,35 @@
   },
   {
     "subject": "Project - TeseraVR",
-    "question": "What does TeseraVR convert 2D e-commerce images into?"
+    "question": "How does TeseraVR convert 2D images into 3D assets?"
   },
   {
     "subject": "Project - TeseraVR",
-    "question": "How does TeseraVR map 3D assets to a user's environment?"
+    "question": "What technology is used for mapping 3D assets to a physical environment in TeseraVR?"
   },
   {
     "subject": "Project - WiChat DevOps",
-    "question": "What is the purpose of the WiChat DevOps project?"
+    "question": "What is the main focus of the WiChat DevOps project?"
   },
   {
     "subject": "Project - WiChat DevOps",
-    "question": "Which containerization tool is used in WiChat DevOps?"
-  },
-  {
-    "subject": "Project - WiChat DevOps",
-    "question": "What AWS service is integrated with GitHub Actions in WiChat DevOps?"
-  },
-  {
-    "subject": "Project - WiChat DevOps",
-    "question": "What type of application does WiChat DevOps support?"
-  },
-  {
-    "subject": "Project - WiChat DevOps",
-    "question": "Which AWS service is used for compute in WiChat DevOps?"
+    "question": "Which tools are integrated in the WiChat DevOps CI/CD pipeline?"
   },
   {
     "subject": "Project - The Chase",
-    "question": "What is the main feature of The Chase project?"
+    "question": "What type of experience does The Chase provide?"
   },
   {
     "subject": "Project - The Chase",
     "question": "How many visualizations are included in The Chase?"
   },
   {
-    "subject": "Project - The Chase",
-    "question": "What library is used for the 3D canvas in The Chase?"
-  },
-  {
-    "subject": "Project - The Chase",
-    "question": "What drives the visualizations in The Chase?"
+    "subject": "Project - AlgoTrade",
+    "question": "What is the primary function of AlgoTrade?"
   },
   {
     "subject": "Project - AlgoTrade",
-    "question": "What is the main function of AlgoTrade?"
-  },
-  {
-    "subject": "Project - AlgoTrade",
-    "question": "Which platform is used for real-time FX execution in AlgoTrade?"
-  },
-  {
-    "subject": "Project - AlgoTrade",
-    "question": "What data streams are used in AlgoTrade?"
-  },
-  {
-    "subject": "Project - AlgoTrade",
-    "question": "What framework is used for inference in AlgoTrade?"
+    "question": "Which platform is AlgoTrade integrated with for real-time trading?"
   },
   {
     "subject": "Project - Late Delivery Prediction & Customer Segmentation",

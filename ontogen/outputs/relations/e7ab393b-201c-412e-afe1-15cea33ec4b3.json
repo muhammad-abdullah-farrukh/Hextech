@@ -1,14 +1,74 @@
 [
   {
-    "property": "algorithm used",
-    "description": "The algorithm utilized in a specific simulation or framework."
+    "property": "used tool",
+    "description": "The tools used to develop a simulation or system."
   },
   {
-    "property": "purpose",
-    "description": "The intended goal or objective of a simulation or framework."
+    "property": "used framework",
+    "description": "The framework used for policy optimization."
   },
   {
-    "property": "status",
-    "description": "The current state or progress of a framework or project."
+    "property": "used programming language",
+    "description": "The programming language used to develop a suite."
+  },
+  {
+    "property": "implemented concept",
+    "description": "The concepts implemented in a suite."
+  },
+  {
+    "property": "used strategy",
+    "description": "The strategies used in a suite."
+  },
+  {
+    "property": "used software",
+    "description": "The software used to design systems."
+  },
+  {
+    "property": "used concept",
+    "description": "The concepts used for ADC/DAC interfacing."
+  },
+  {
+    "property": "used modulation type",
+    "description": "The type of modulation used in systems."
+  },
+  {
+    "property": "used carrier synchronization",
+    "description": "The method used for carrier synchronization."
+  },
+  {
+    "property": "used machine learning library",
+    "description": "The library used to train and deploy models."
+  },
+  {
+    "property": "used learning paradigm",
+    "description": "The learning paradigm used in models."
+  },
+  {
+    "property": "used tool",
+    "description": "The tool used for carbon footprint tracking."
+  },
+  {
+    "property": "used software tool",
+    "description": "The software tools used to design CubeSat Power Control Units."
+  },
+  {
+    "property": "used hardware type",
+    "description": "The type of hardware used in the design of CubeSat Power Control Units."
+  },
+  {
+    "property": "applied concept",
+    "description": "The concepts applied in the design of CubeSat Power Control Units."
+  },
+  {
+    "property": "used library",
+    "description": "The libraries used to architect complex reward-shaping functions."
+  },
+  {
+    "property": "used tool",
+    "description": "The tools used for real-time visual analytics."
+  },
+  {
+    "property": "used metric",
+    "description": "The metrics used to assess training convergence."
   }
 ]
