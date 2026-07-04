@@ -306,6 +306,32 @@ def build_ontology(match_results: list[dict]) -> tuple[str, dict[str, str]]:
     new_prop_map:   dict[str, str] = {}    # label → turtle block (for EDC)
     attempted_new_props: set[str] = set()  # lower(label) generated once (valid OR not)
 
+    def _generate_new_prop(extracted: dict) -> None:
+        """Mint a Turtle block for a property with no Wikidata/canon match yet
+        (or a canon match whose stored turtle is missing/empty). One attempt
+        per unique property label; invalid blocks are dropped with a diagnostic."""
+        key = extracted["property"].strip().lower()
+        if key in seen_new_props or key in attempted_new_props:
+            # Already generated (valid) OR already tried once and dropped as
+            # invalid. Either way, do NOT regenerate per occurrence — that is
+            # what made a 34-skill résumé run 34 identical hasSkill Turtle
+            # generations (each one failing validation, none ever cached).
+            return
+
+        attempted_new_props.add(key)  # one generation attempt per unique property
+        block = _new_prop_turtle(extracted)
+        valid, diag = _validate_turtle_block(block, extracted["property"])
+        if not valid:
+            print(
+                f"[Stage 7/8]   dropping invalid Turtle block for "
+                f"'{extracted['property']}': {diag}",
+                flush=True,
+            )
+            return
+
+        seen_new_props[key] = block
+        new_prop_map[extracted["property"]] = block
+
     for item in match_results:
         extracted = item["extracted"]
         match     = item.get("wikidata_match")
@@ -328,34 +354,25 @@ def build_ontology(match_results: list[dict]) -> tuple[str, dict[str, str]]:
                 seen_canon_blocks.add(normalized)
                 turtle_blocks.append(existing_turtle)
             else:
-                # Canon entry predates turtle storage — fall through to generate
-                pass
+                # Canon entry predates turtle storage: generate one now instead
+                # of silently dropping the property (previously a bare `pass`
+                # here meant the property never got a turtle block at all —
+                # no Wikidata block, no canon block, no generated block — and
+                # every fact using it was later rejected in Stage 9 as "not in
+                # the ontology" with no way to tell it apart from a genuine
+                # hallucinated predicate).
+                if not SCHEMA_EXPANSION:
+                    continue
+                print(
+                    f"[Stage 7/8]   canon match for '{extracted['property']}' has "
+                    f"no stored turtle — generating one now", flush=True,
+                )
+                _generate_new_prop(extracted)
 
         else:
             if not SCHEMA_EXPANSION:
                 continue  # target-schema-constrained mode: discard
-
-            key = extracted["property"].strip().lower()
-            if key in seen_new_props or key in attempted_new_props:
-                # Already generated (valid) OR already tried once and dropped as
-                # invalid. Either way, do NOT regenerate per occurrence — that is
-                # what made a 34-skill résumé run 34 identical hasSkill Turtle
-                # generations (each one failing validation, none ever cached).
-                continue
-
-            attempted_new_props.add(key)  # one generation attempt per unique property
-            block = _new_prop_turtle(extracted)
-            valid, diag = _validate_turtle_block(block, extracted["property"])
-            if not valid:
-                print(
-                    f"[Stage 7/8]   dropping invalid Turtle block for "
-                    f"'{extracted['property']}': {diag}",
-                    flush=True,
-                )
-                continue
-
-            seen_new_props[key] = block
-            new_prop_map[extracted["property"]] = block
+            _generate_new_prop(extracted)
 
     turtle_blocks.extend(seen_new_props.values())
     return "\n".join(turtle_blocks), new_prop_map

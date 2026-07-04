@@ -91,10 +91,24 @@ assert LLM_TOKENS_RETRY > max(LLM_TOKENS_CLASSIFY, LLM_TOKENS_DEFINE), (
     "retry meaningfully increases max_tokens"
 )
 
+# Stage 9 fact generation: same starvation risk as classify/define (reasoning
+# eats the budget before any JSON is emitted -> _parse_facts sees "" and the
+# whole chunk gets misdiagnosed as a formatting error instead of a truncation).
+# Centralized here (rather than a bare literal in stage9_10_kg.py) so it's
+# visible next to the other budgets this bug class affects.
+LLM_TOKENS_FACTS       = 3000   # base budget for one generate_facts() call
+LLM_TOKENS_FACTS_RETRY = 7000   # one-shot retry budget on truncation/empty output
+
+assert LLM_TOKENS_FACTS_RETRY > LLM_TOKENS_FACTS, (
+    "LLM_TOKENS_FACTS_RETRY must exceed LLM_TOKENS_FACTS so the retry "
+    "meaningfully increases max_tokens"
+)
+
 # ── Stage 9: context-window guard ──────────────────────────────────────────
 # Rough ceiling on the Stage 9 prompt in characters (~3.5 chars per token).
 # Sized against the real 24576-token window minus the Stage 9 output reserve
-# (max_tokens=3000) and a small margin: (24576 − 3000 − ~500) × 3.5 ≈ 73k chars.
+# (LLM_TOKENS_FACTS_RETRY, the larger of the two possible reserves) and a
+# small margin: (24576 − 7000 − ~500) × 3.5 ≈ 60k chars.
 # 60000 is a conservative value under that ceiling, letting _guard_context and
 # _chunk_qa_pairs (budgeted at MAX_PROMPT_CHARS // 3) send fuller document/QA
 # context instead of truncating it.
