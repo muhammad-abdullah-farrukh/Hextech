@@ -225,7 +225,8 @@ psql "postgresql://resume_parser:devpassword@localhost:5433/resume_parser"
 ## 7. Visual GUI (Adminer)
 
 ```bash
-# Launch a web DB browser on http://localhost:8081 (8080 is taken by the LLM server).
+# Launch a web DB browser on http://localhost:8081 (adminer's own port is 8080; the
+# LLM server runs on 8090). Host 8081 -> container 8080.
 sudo docker run --rm -d --name adminer \
   --network ocr-resume-paser_default \
   -p 8081:8080 adminer

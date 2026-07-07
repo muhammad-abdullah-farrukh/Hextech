@@ -59,6 +59,8 @@ def sampling_kwargs(settings: Settings) -> dict[str, Any]:
     }
     if settings.max_tokens:
         kw["max_tokens"] = settings.max_tokens
+    if settings.seed is not None:
+        kw["seed"] = settings.seed
     return kw
 
 

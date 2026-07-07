@@ -12,7 +12,7 @@ import json
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from .artifacts import save_artifacts, save_structured
+from .artifacts import save_artifacts, save_structured, update_metadata
 from .cleanup import clean_extraction
 from .extract import extract_pdf
 from .normalize import extract_structured
@@ -52,10 +52,15 @@ def run_pipeline(
     if settings is None:
         raise ValueError("settings is required when run_llm=True")
 
-    structured = extract_structured(clean_text, field_spec, settings, strict=strict)
+    review_status: dict = {}
+    structured = extract_structured(
+        clean_text, field_spec, settings, strict=strict, review_status=review_status
+    )
 
     if artifacts_dir:
         save_structured(artifacts_dir, structured)
+        if review_status:
+            update_metadata(artifacts_dir, review_status)
 
     if ingest_fn is not None:
         ingest_fn(structured, pdf_path)

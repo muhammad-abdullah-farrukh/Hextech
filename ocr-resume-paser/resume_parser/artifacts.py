@@ -46,3 +46,18 @@ def save_structured(artifacts_dir: str, structured: dict) -> None:
     (out / "04_structured.json").write_text(
         json.dumps(structured, indent=2, ensure_ascii=False), encoding="utf-8"
     )
+
+
+def update_metadata(artifacts_dir: str, extra: dict) -> None:
+    """Merge `extra` into 03_extraction_metadata.json (created if missing).
+
+    Used to record post-extraction status (e.g. the refine loop's `needs_review`
+    flag) in metadata, keeping it out of the schema-conformant structured JSON.
+    """
+    path = Path(artifacts_dir) / "03_extraction_metadata.json"
+    data: dict = {}
+    if path.exists():
+        data = json.loads(path.read_text(encoding="utf-8"))
+    data.update(extra)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, indent=2), encoding="utf-8")

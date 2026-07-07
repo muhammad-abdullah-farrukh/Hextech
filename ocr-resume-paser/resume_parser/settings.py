@@ -16,6 +16,14 @@ from dotenv import load_dotenv
 DEFAULT_BASE_URL = "http://localhost:8000/v1"
 DEFAULT_INSTRUCTOR_MODE = "JSON_SCHEMA"
 
+
+def _env_bool(name: str, default: bool) -> bool:
+    """Parse a truthy/falsey env var; blank/unset -> `default`."""
+    raw = os.environ.get(name)
+    if raw is None or not raw.strip():
+        return default
+    return raw.strip().lower() in ("1", "true", "yes", "on")
+
 # Order the probe (and the runtime fallback ladder) walk down. The configured
 # mode is tried first, then the remaining rungs below it in this order.
 MODE_LADDER = ["JSON_SCHEMA", "TOOLS", "JSON", "MD_JSON"]
@@ -44,6 +52,27 @@ class Settings:
     frequency_penalty: float
     presence_penalty: float
     max_tokens: int
+    # Fixed RNG seed for reproducible sampling. None = server default (may be
+    # nondeterministic). Combined with temperature 0 it makes runs repeatable.
+    seed: int | None = None
+    # Disable hybrid-reasoning models' <think> phase (Qwen3 etc.). Those models
+    # emit a long reasoning block that blows the generation cap before the JSON,
+    # so a "/no_think" directive is prepended to the system prompt when true.
+    disable_thinking: bool = False
+    # Deterministic post-extraction cleanup passes (see postprocess.py). Each is
+    # toggleable so a misbehaving pass can be disabled without a code change.
+    fix_work_roles: bool = True
+    backfill_skills: bool = True
+    backfill_languages: bool = True
+    dedup_projects: bool = True
+    filter_skills: bool = True
+    validate_metrics: bool = True
+    dedup_cert_activity: bool = True
+    # Project-dedup embedding model + cosine merge threshold. bge-small-en's cosine
+    # range is compressed (distinct items still score ~0.84), so this sits well
+    # above the 0.85 rule-of-thumb to avoid merging genuinely-distinct projects.
+    embedding_model: str = "BAAI/bge-small-en"
+    dedup_threshold: float = 0.90
 
 
 def load_settings(env_path: str | os.PathLike[str] | None = None) -> Settings:
@@ -84,6 +113,17 @@ def load_settings(env_path: str | os.PathLike[str] | None = None) -> Settings:
         frequency_penalty=float(os.environ.get("LLM_FREQUENCY_PENALTY", "0.15")),
         presence_penalty=float(os.environ.get("LLM_PRESENCE_PENALTY", "0.0")),
         max_tokens=int(os.environ.get("LLM_MAX_TOKENS", "4096")),
+        seed=(int(s) if (s := os.environ.get("LLM_SEED", "").strip()) else None),
+        disable_thinking=_env_bool("LLM_DISABLE_THINKING", False),
+        fix_work_roles=_env_bool("LLM_FIX_WORK_ROLES", True),
+        backfill_skills=_env_bool("LLM_BACKFILL_SKILLS", True),
+        backfill_languages=_env_bool("LLM_BACKFILL_LANGUAGES", True),
+        dedup_projects=_env_bool("LLM_DEDUP_PROJECTS", True),
+        filter_skills=_env_bool("LLM_FILTER_SKILLS", True),
+        validate_metrics=_env_bool("LLM_VALIDATE_METRICS", True),
+        dedup_cert_activity=_env_bool("LLM_DEDUP_CERT_ACTIVITY", True),
+        embedding_model=os.environ.get("LLM_EMBEDDING_MODEL", "BAAI/bge-small-en").strip(),
+        dedup_threshold=float(os.environ.get("LLM_DEDUP_THRESHOLD", "0.90")),
     )
 
 

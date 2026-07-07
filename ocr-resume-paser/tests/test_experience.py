@@ -35,7 +35,7 @@ def test_parse_month_year():
     assert parse_month_year("September 2024", TODAY) == date(2024, 9, 1)
     assert parse_month_year("Sept 2024", TODAY) == date(2024, 9, 1)
     assert parse_month_year("Present", TODAY) == TODAY
-    assert parse_month_year("2023", TODAY) == date(2023, 1, 1)
+    assert parse_month_year("2023", TODAY) == date(2023, 6, 1)  # year-only -> mid-year
     assert parse_month_year("", TODAY) is None
     assert parse_month_year(None, TODAY) is None
 

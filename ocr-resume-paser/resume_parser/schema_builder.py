@@ -165,6 +165,22 @@ def build_review_model(resume_model: type[BaseModel]) -> type[BaseModel]:
                 "versus the source text and needs no further changes",
             ),
         ),
+        reason=(
+            Optional[str],
+            Field(
+                default=None,
+                description="if approved is false, a short reason naming what is "
+                "still wrong (empty when approved)",
+            ),
+        ),
+        field=(
+            Optional[str],
+            Field(
+                default=None,
+                description="the schema field name most in need of correction, "
+                "if any (empty when approved)",
+            ),
+        ),
         corrected=(
             resume_model,
             Field(..., description="the full resume: unchanged if approved, else "

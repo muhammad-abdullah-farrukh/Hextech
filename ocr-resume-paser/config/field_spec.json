@@ -18,6 +18,30 @@
     "description": "Primary contact phone number"
   },
   {
+    "name": "linkedin",
+    "type": "string",
+    "required": false,
+    "description": "LinkedIn profile URL or handle, if present (e.g. 'linkedin.com/in/jane')"
+  },
+  {
+    "name": "github",
+    "type": "string",
+    "required": false,
+    "description": "GitHub profile URL or handle, if present (e.g. 'github.com/jane')"
+  },
+  {
+    "name": "location",
+    "type": "string",
+    "required": false,
+    "description": "The candidate's own location / mailing address as written (city, country, or full address)"
+  },
+  {
+    "name": "date_of_birth",
+    "type": "string",
+    "required": false,
+    "description": "Date of birth, only if explicitly stated in the resume"
+  },
+  {
     "name": "years_experience",
     "type": "object",
     "required": true,
@@ -43,6 +67,7 @@
     "properties": [
       { "name": "company", "type": "string", "required": true },
       { "name": "title", "type": "string", "required": true },
+      { "name": "location", "type": "string", "required": false, "description": "Where the role was based (city, country), if stated" },
       { "name": "start_date", "type": "string", "required": false },
       { "name": "end_date", "type": "string", "required": false }
     ]
@@ -54,10 +79,13 @@
     "required": false,
     "description": "Projects the candidate built or contributed to",
     "properties": [
-      { "name": "name", "type": "string", "required": true, "description": "Project name or short title" },
+      { "name": "name", "type": "string", "required": true, "description": "Project name or short title (keep any qualifier such as '(Final Year Project)')" },
       { "name": "description", "type": "string", "required": false, "description": "What the project does / the candidate's contribution" },
       { "name": "technologies", "type": "array", "items": "string", "required": false, "description": "Tools, languages, or frameworks used" },
-      { "name": "metrics", "type": "array", "items": "string", "required": false, "description": "Quantitative results reported for the project, each as a short string (e.g. '78.58% accuracy', 'F1 0.91', '110,414 samples', '5,000+ annotations')" }
+      { "name": "metrics", "type": "array", "items": "string", "required": false, "description": "Quantitative results reported for the project, each as a short string (e.g. '78.58% accuracy', 'F1 0.91', '110,414 samples', '5,000+ annotations')" },
+      { "name": "start_date", "type": "string", "required": false, "description": "When the project started, as written, if stated" },
+      { "name": "end_date", "type": "string", "required": false, "description": "When the project ended, as written (or 'present'), if stated" },
+      { "name": "location", "type": "string", "required": false, "description": "Project location (city, country), if stated" }
     ]
   },
   {
@@ -69,6 +97,8 @@
     "properties": [
       { "name": "institution", "type": "string", "required": true },
       { "name": "degree", "type": "string", "required": false },
+      { "name": "location", "type": "string", "required": false, "description": "Where the institution is (city, country), if stated" },
+      { "name": "gpa", "type": "string", "required": false, "description": "GPA/CGPA or marks as written (e.g. 'CGPA 2.62/4.0', '70/100%', '82.73%'), if stated" },
       { "name": "start_date", "type": "string", "required": false, "description": "When the program started (as written, e.g. '09/2023', 'Sept 2021')" },
       { "name": "end_date", "type": "string", "required": false, "description": "When the program ended, as written (e.g. '2025', 'present', 'expected 2027'); use 'present' for ongoing programs" },
       { "name": "graduation_year", "type": "string", "required": false, "description": "Completion/graduation year ONLY. Leave null if the program is ongoing ('present'/'current') or the year is not stated — never copy the start year here" }
@@ -106,6 +136,7 @@
     "properties": [
       { "name": "name", "type": "string", "required": true, "description": "Activity, role, or membership name" },
       { "name": "organization", "type": "string", "required": false, "description": "Associated organization or society, if any" },
+      { "name": "date", "type": "string", "required": false, "description": "Date or period of the activity, as written, if stated" },
       { "name": "description", "type": "string", "required": false, "description": "What the activity involved, if described" }
     ]
   },
@@ -118,7 +149,8 @@
     "properties": [
       { "name": "name", "type": "string", "required": true, "description": "Reference's full name" },
       { "name": "title", "type": "string", "required": false, "description": "Their title/role and affiliation, if stated" },
-      { "name": "contact", "type": "string", "required": false, "description": "Their email or phone, if stated" }
+      { "name": "contact", "type": "string", "required": false, "description": "Their email, phone, or profile link, if stated" },
+      { "name": "relationship", "type": "string", "required": false, "description": "How the reference knows the candidate / their stated relationship, if described" }
     ]
   }
 ]

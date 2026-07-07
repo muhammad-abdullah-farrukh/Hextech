@@ -146,6 +146,8 @@ def clean_extraction(pages: list[str]) -> str:
 
 Order matters: boilerplate strip (page-level, catches repeated headers/footers/page numbers) → near-duplicate block collapse (paragraph-level, catches dual-read columns and overlapping OCR regions) → sentence merge (line-level, repairs column-edge line breaks) → whitespace normalize (final pass, run last so it doesn't interfere with the similarity comparisons above it).
 
+> **Note (current implementation):** the snippet above is the original design. The shipped `cleanup.py` adds a **markdown-artifact scrub** as step 1 (strips `~~`/`<u>`/`<sup>`/`<br>`, demotes location-only headings), makes the **boilerplate strip position-aware** (a body line that recurs across pages — e.g. a repeated date range — is no longer deleted; only same-edge-position repeats and page-number patterns are), and extends **sentence merge** to reattach stranded bullet markers and rejoin degraded hard-wraps. It also runs a large **deterministic post-processing** stage after the LLM (contact/language/skill backfills, project dedup, skill/metric filters, cert⇄activity dedup). See `docs/TECHNICAL_REPORT.md` §Stage 3 and §Stage 7 for the authoritative description.
+
 ## 4. Dynamic schema → Pydantic model
 
 The target schema arrives at runtime as a field-spec list — not a hardcoded class:
@@ -239,6 +241,8 @@ def extract_structured(clean_markdown: str, field_spec: list[dict],
 ```
 
 Use `instructor.Mode.JSON_SCHEMA` against locally hosted vLLM models rather than `Mode.TOOLS` — most open-weight chat models served via vLLM don't reliably emit OpenAI-style tool-call envelopes, but they do honor vLLM's native `response_format={"type": "json_schema", ...}` path, which is what `JSON_SCHEMA` mode targets.
+
+> **Note (current implementation):** the shipped `normalize.py` is richer than this snippet: a 13-rule system prompt plus an injected field guide, a mode-fallback ladder (`JSON_SCHEMA → TOOLS → JSON → MD_JSON`), and up to `LLM_REFINE_PASSES` self-verify/refine passes returning `{approved, reason, field, corrected}`. Sampling is **greedy (temperature 0) with a fixed seed** for reproducibility. The current backend is **Qwen3-8B on llama.cpp** (`:8090`), which needs `/no_think` (`LLM_DISABLE_THINKING=true`) to suppress its reasoning phase; the earlier DeepSeek-R1 temperature-0.6 requirement no longer applies. See `docs/TECHNICAL_REPORT.md` §Stage 6.
 
 ## 6. Full pipeline — PDF in, JSON file out
 

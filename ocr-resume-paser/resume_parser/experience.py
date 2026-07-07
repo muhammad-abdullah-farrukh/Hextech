@@ -37,7 +37,10 @@ def parse_month_year(value: str | None, today: date) -> date | None:
             return date(int(m.group(2)), mon, 1)
     y = _YEAR_RE.search(text)
     if y:
-        return date(int(y.group(1)), 1, 1)  # year only -> assume January
+        # Year only (no month): assume mid-year (June) rather than January. The
+        # month is genuinely unknown, and a midpoint avoids systematically
+        # over-stating span lengths (Jan start / Dec-ish end) in years_experience.
+        return date(int(y.group(1)), 6, 1)
     return None
 
 
@@ -75,6 +78,13 @@ def compute_total_experience(
         else:
             merged.append([start, end])
     total = sum(_months_between(a, b) for a, b in merged)
+    # Log the merged intervals so the derived total is auditable (overlaps are
+    # collapsed once, not double-counted).
+    logger.debug(
+        "experience intervals (merged): %s -> %d months",
+        [f"{a:%Y-%m}..{b:%Y-%m}" for a, b in merged],
+        total,
+    )
     return total // 12, total % 12
 
 
